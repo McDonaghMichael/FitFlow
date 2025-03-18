@@ -1,14 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import {
+  IonButton,
+  IonCol,
+  IonContent,
+  IonGrid,
+  IonHeader, IonImg,
+  IonRow,
+  IonTitle,
+  IonToolbar
+} from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.page.html',
   styleUrls: ['./landing.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonGrid, IonRow, IonCol, IonImg]
 })
 export class LandingPage implements OnInit {
 
