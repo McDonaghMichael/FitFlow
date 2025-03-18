@@ -12,12 +12,20 @@
           <ion-item>
             <ion-input label="Password" labelPlacement="stacked" [clearOnEdit]="true" placeholder="2@3hg8@1g!" required="true"></ion-input>
           </ion-item>
+
         </ion-list>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-button>Login</ion-button>
+        <ion-button>Sign In</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+          <ion-text [routerLink]="['/authentication/forgot-password']" color="primary">
+            <p style="text-decoration: underline">Forgot password?</p>
+          </ion-text>
       </ion-col>
     </ion-row>
     <ion-row>

@@ -7,7 +7,7 @@ import {
   IonCol,
   IonContent,
   IonGrid,
-  IonHeader, IonInput, IonItem, IonList, IonRow,
+  IonHeader, IonInput, IonItem, IonList, IonRow, IonText,
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
@@ -18,7 +18,7 @@ import {RouterLink} from "@angular/router";
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonCheckbox, IonCol, IonGrid, IonInput, IonItem, IonList, IonRow, RouterLink]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonCheckbox, IonCol, IonGrid, IonInput, IonItem, IonList, IonRow, RouterLink, IonText]
 })
 export class LoginPage implements OnInit {
 
