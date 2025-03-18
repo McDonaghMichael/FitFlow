@@ -11,13 +11,14 @@ import {
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.page.html',
   styleUrls: ['./landing.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonGrid, IonRow, IonCol, IonImg]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonGrid, IonRow, IonCol, IonImg, RouterLink]
 })
 export class LandingPage implements OnInit {
 

@@ -11,12 +11,12 @@
     <div class="button-container">
       <ion-row>
         <ion-col size="6" offset="3" class="ion-text-center">
-          <ion-button>Create Account</ion-button>
+            <ion-button [routerLink]="['/authentication/register']">Create Account</ion-button>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col size="6" offset="3" class="ion-text-center">
-          <ion-button>Existing User? Login</ion-button>
+          <ion-button [routerLink]="['/authentication/login']">Existing User? Login</ion-button>
         </ion-col>
       </ion-row>
     </div>
