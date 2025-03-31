@@ -1,15 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  IonContent,
-  IonHeader,
   IonIcon,
   IonTabBar,
   IonTabButton,
   IonTabs,
-  IonTitle,
-  IonToolbar,
   IonTab
 } from "@ionic/angular/standalone";
+import {MatIcon} from "@angular/material/icon";
 
 @Component({
   selector: 'tab-menu',
@@ -17,14 +14,10 @@ import {
   styleUrls: ['./tab-menu.component.scss'],
   imports: [
     IonTabs,
-    IonHeader,
-    IonToolbar,
-    IonTitle,
-    IonContent,
     IonTabBar,
     IonTabButton,
     IonIcon,
-    IonTab
+    MatIcon
   ]
 })
 export class TabMenuComponent  implements OnInit {
