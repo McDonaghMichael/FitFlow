@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import {TabMenuComponent} from "../../../components/tab-menu/tab-menu.component";
 
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.page.html',
   styleUrls: ['./homepage.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, TabMenuComponent]
 })
 export class HomepagePage implements OnInit {
 
