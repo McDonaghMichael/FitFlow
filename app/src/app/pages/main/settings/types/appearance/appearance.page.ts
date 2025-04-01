@@ -32,11 +32,18 @@ export class AppearancePage implements OnInit {
     if (savedTheme) {
       this.isDarkMode = savedTheme === 'true';
     }
+    this.applyTheme()
+
   }
 
   toggleTheme() {
     this.isDarkMode = !this.isDarkMode;
     localStorage.setItem('darkMode', this.isDarkMode.toString());
+    this.applyTheme()
+  }
+
+  applyTheme() {
+    document.documentElement.classList.toggle('ion-palette-dark', this.isDarkMode);
   }
 
 }
