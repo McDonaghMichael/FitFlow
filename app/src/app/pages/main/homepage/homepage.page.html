@@ -7,6 +7,50 @@
     <circle cx="500" cy="20" r="170" fill="black" />
   </svg>
 
+
+  <ion-grid class="stats-container">
+    <ion-row>
+      <ion-col>
+        <canvas id="myChart" width="100" height="100"></canvas>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6">
+        <ion-card>
+          <ion-card-content>
+            <ion-row class="ion-align-items-center">
+              <ion-col size="auto">
+                <div class="progress-circle calories">
+                  <div class="progress-value">89%</div>
+                </div>
+              </ion-col>
+              <ion-col>
+                <div class="label">Calories</div>
+                <div class="value">1,209kcal</div>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6">
+        <ion-card>
+          <ion-card-content>
+            <ion-row class="ion-align-items-center">
+              <ion-col size="auto">
+                <div class="progress-circle protein">
+                  <div class="progress-value">89%</div>
+                </div>
+              </ion-col>
+              <ion-col>
+                <div class="label">Protein</div>
+                <div class="value">125g</div>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
   <app-add-menu *ngIf="addMenu"></app-add-menu>
   <tab-menu [profile]="true" [homepage]="false" [settings]="true" (addMenu)="toggleAddMenu()"></tab-menu>
 </ion-content>
