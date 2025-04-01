@@ -43,6 +43,8 @@ export class ReportIssuePage implements OnInit {
     setTimeout(() => {
       this.issueReported = false;
     }, 3000);
+
+    this.saveData();
   }
 
   runValidation() : boolean {
@@ -61,6 +63,10 @@ export class ReportIssuePage implements OnInit {
     }
 
     return true;
+  }
+
+  saveData() : void {
+    console.log(this.issue);
   }
 
 }
