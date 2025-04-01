@@ -1,6 +1,7 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {IonTabBar, IonTabButton, IonTabs, IonToolbar} from "@ionic/angular/standalone";
 import {RouterLink} from "@angular/router";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-settings-tab-menu',
@@ -11,15 +12,22 @@ import {RouterLink} from "@angular/router";
     IonTabButton,
     IonTabs,
     IonToolbar,
-    RouterLink
+    RouterLink,
+    NgIf
   ]
 })
 export class SettingsTabMenuComponent  implements OnInit {
 
   @Output() save = new EventEmitter<void>();
+  @Output() submit = new EventEmitter<void>();
+  @Input() sub: boolean = false;
 
   onSave() {
     this.save.emit();
+  }
+
+  onSubmit() {
+    this.submit.emit();
   }
 
   constructor() { }
