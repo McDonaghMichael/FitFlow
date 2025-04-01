@@ -8,7 +8,7 @@ import {
   IonCol,
   IonContent,
   IonGrid,
-  IonHeader, IonInput, IonItem, IonLabel, IonRow,
+  IonHeader, IonInput, IonItem, IonLabel, IonRow, IonTextarea,
   IonTitle, IonToggle,
   IonToolbar
 } from '@ionic/angular/standalone';
@@ -18,7 +18,7 @@ import {
   templateUrl: './report-issue.page.html',
   styleUrls: ['./report-issue.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCard, IonCardContent, IonCol, IonGrid, IonItem, IonLabel, IonRow, IonToggle, IonButton, IonInput]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCard, IonCardContent, IonCol, IonGrid, IonItem, IonLabel, IonRow, IonToggle, IonButton, IonInput, IonTextarea]
 })
 export class ReportIssuePage implements OnInit {
 

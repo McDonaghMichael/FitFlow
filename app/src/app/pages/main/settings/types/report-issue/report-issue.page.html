@@ -15,7 +15,14 @@
         <ion-card class="report-issue-card" >
           <ion-card-content>
             <ion-item>
-              <ion-input class="report-issue-input" [clearOnEdit]="true" placeholder="Enter text..." required="true"></ion-input>
+              <ion-textarea
+                class="report-issue-input"
+                [clearOnEdit]="true"
+                placeholder="Enter text..."
+                required="true"
+                rows="6"
+                auto-grow="true"
+              ></ion-textarea>
             </ion-item>
           </ion-card-content>
         </ion-card>

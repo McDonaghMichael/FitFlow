@@ -11,4 +11,14 @@
 
 .report-issue-input {
   color: black;
+  min-height: 150px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  --background: #f8f8f8;
+  margin: 10px 0;
+}
+
+.report-issue-input::placeholder {
+  color: #999;
 }
