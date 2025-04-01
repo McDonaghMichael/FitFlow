@@ -12,17 +12,19 @@ import {
   IonToolbar
 } from '@ionic/angular/standalone';
 import { TabMenuComponent } from "../../../../components/tab-menu/tab-menu.component";
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-enter-manually',
   templateUrl: './enter-manually.page.html',
   styleUrls: ['./enter-manually.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, TabMenuComponent, IonCard, IonInput, IonCardHeader, IonCardTitle, IonCardContent]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, TabMenuComponent, IonCard, IonInput, IonCardHeader, IonCardTitle, IonCardContent, RouterLink]
 })
 export class EnterManuallyPage implements OnInit {
 
   search: string = '';
+  selectedProduct: number = 0;
 
   foodArray = [
     { id: "aaa", name: 'Apple', brand: 'Tesco', calories: 95, barcodeNumber: 1000 },
@@ -38,6 +40,10 @@ export class EnterManuallyPage implements OnInit {
 
   ngOnInit() {
     this.filteredFoodArray = [...this.foodArray];
+    const prod = localStorage.getItem('product');
+    if (prod) {
+      this.selectedProduct = Number(prod);
+    }
   }
 
   updateResults(event: any): void {
@@ -48,5 +54,11 @@ export class EnterManuallyPage implements OnInit {
       food.barcodeNumber == value
     );
     console.log(this.filteredFoodArray);
+  }
+
+  selectProduct(product: number): void {
+    localStorage.setItem('product', String(product));
+    this.selectedProduct = product;
+    console.log(this.selectedProduct);
   }
 }
