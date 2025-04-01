@@ -34,6 +34,7 @@ export class TabMenuComponent  implements OnInit {
   @Input() settings: boolean = false;
   @Input() barcodeScanner: boolean = false;
   @Input() enterManually: boolean = false;
+  @Input() productInformation: boolean = false;
 
   @Output() addMenu = new EventEmitter<void>();
 
@@ -45,5 +46,12 @@ export class TabMenuComponent  implements OnInit {
     this.addMenu.emit();
   }
 
+  resetItem(): void {
+    const prod = localStorage.getItem('product');
+    if (prod) {
+      localStorage.removeItem('product');
+
+    }
+  }
 
 }

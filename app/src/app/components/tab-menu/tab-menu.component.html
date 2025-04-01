@@ -2,39 +2,46 @@
   <ion-toolbar>
     <ion-tabs>
       <ion-tab-bar slot="bottom">
-          <ion-tab-button *ngIf="profile && !product" [routerLink]="['/profile']">
+          <ion-tab-button *ngIf="profile && !product && !productInformation" [routerLink]="['/profile']">
             Profile
           </ion-tab-button>
-          <ion-tab-button *ngIf="!profile && !product" [routerLink]="['/homepage']">
+          <ion-tab-button *ngIf="!profile && !product && !productInformation" [routerLink]="['/homepage']">
             Back
           </ion-tab-button>
-          <ion-tab-button *ngIf="!homepage && !product" (click)="onAddMenu()">
+          <ion-tab-button *ngIf="!homepage && !product && !productInformation" (click)="onAddMenu()">
             Add
           </ion-tab-button>
-          <ion-tab-button *ngIf="homepage && !product" [routerLink]="['/homepage']">
+          <ion-tab-button *ngIf="homepage && !product && !productInformation" [routerLink]="['/homepage']">
             Homepage
           </ion-tab-button>
-          <ion-tab-button *ngIf="settings && !product" [routerLink]="['/settings']">
+          <ion-tab-button *ngIf="settings && !product && !productInformation" [routerLink]="['/settings']">
             Settings
           </ion-tab-button>
-        <ion-tab-button *ngIf="!settings && !product" [routerLink]="['/homepage']">
+        <ion-tab-button *ngIf="!settings && !product && !productInformation" [routerLink]="['/homepage']">
           Back
         </ion-tab-button>
 
-        <ion-tab-button *ngIf="!barcodeScanner && product" [routerLink]="['/homepage']">
+        <ion-tab-button *ngIf="!barcodeScanner && product && !productInformation" [routerLink]="['/homepage']">
           Back
         </ion-tab-button>
 
-        <ion-tab-button *ngIf="!barcodeScanner && product" [routerLink]="['/product/enter-manually']">
+        <ion-tab-button *ngIf="!barcodeScanner && product && !productInformation" [routerLink]="['/product/enter-manually']">
           Enter Manually
         </ion-tab-button>
 
-        <ion-tab-button *ngIf="!enterManually && product" [routerLink]="['/homepage']">
+        <ion-tab-button *ngIf="!enterManually && product && !productInformation" [routerLink]="['/homepage']">
           Back
         </ion-tab-button>
 
-        <ion-tab-button *ngIf="!enterManually && product" [routerLink]="['/product/barcode-scanner']">
+        <ion-tab-button *ngIf="!enterManually && product && !productInformation" [routerLink]="['/product/barcode-scanner']">
           Barcode Scanner
+        </ion-tab-button>
+
+        <ion-tab-button *ngIf="!enterManually && !product && productInformation" [routerLink]="['/product/enter-manually']" (click)="resetItem()">
+          Back
+        </ion-tab-button>
+        <ion-tab-button *ngIf="!enterManually && !product && productInformation" [routerLink]="['/product/enter-manually']">
+          Add
         </ion-tab-button>
 
       </ion-tab-bar>

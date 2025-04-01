@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {IonContent, IonHeader, IonIcon, IonTitle, IonToolbar} from '@ionic/angular/standalone';
+import {TabMenuComponent} from "../../../../components/tab-menu/tab-menu.component";
 
 @Component({
   selector: 'app-product-information',
   templateUrl: './product-information.page.html',
   styleUrls: ['./product-information.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, TabMenuComponent]
 })
 export class ProductInformationPage implements OnInit {
 
@@ -33,6 +34,10 @@ export class ProductInformationPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.updateProduct();
+  }
+
+  updateProduct(): void {
     const prod = localStorage.getItem('product');
     if (prod) {
       this.selectedProduct = Number(prod);

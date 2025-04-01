@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
@@ -12,7 +12,7 @@ import {
   IonToolbar
 } from '@ionic/angular/standalone';
 import { TabMenuComponent } from "../../../../components/tab-menu/tab-menu.component";
-import {RouterLink} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-enter-manually',
@@ -37,7 +37,7 @@ export class EnterManuallyPage implements OnInit {
 
   filteredFoodArray: any = [];
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     this.filteredFoodArray = [...this.foodArray];
@@ -61,5 +61,6 @@ export class EnterManuallyPage implements OnInit {
     localStorage.setItem('product', String(product));
     this.selectedProduct = product;
     console.log(this.selectedProduct);
+    //this.router.navigate(['/product/product-information']);
   }
 }
