@@ -21,9 +21,10 @@ import {
     IonButton
   ]
 })
-export class LogoutConfirmationComponent  implements OnInit {
+export class LogoutConfirmationComponent implements OnInit {
 
   @Input() onCancel!: () => void;
+
   constructor() { }
 
   ngOnInit() {}

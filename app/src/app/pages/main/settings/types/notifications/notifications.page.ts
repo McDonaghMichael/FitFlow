@@ -12,13 +12,14 @@ import {
   IonTitle, IonToggle,
   IonToolbar
 } from '@ionic/angular/standalone';
+import {SettingsTabMenuComponent} from "../../components/settings-tab-menu/settings-tab-menu.component";
 
 @Component({
   selector: 'app-notifications',
   templateUrl: './notifications.page.html',
   styleUrls: ['./notifications.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCol, IonGrid, IonRow, IonCard, IonCardContent, IonInput, IonItem, IonLabel, IonToggle]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCol, IonGrid, IonRow, IonCard, IonCardContent, IonInput, IonItem, IonLabel, IonToggle, SettingsTabMenuComponent]
 })
 export class NotificationsPage implements OnInit {
 
@@ -35,6 +36,10 @@ export class NotificationsPage implements OnInit {
 
   toggleWaterReminder() {
     this.isWaterReminder = !this.isWaterReminder;
+  }
+
+  saveSettings() {
+    console.log("AccountManagementPage saveSettings");
     localStorage.setItem('waterReminder', this.isWaterReminder.toString());
   }
 }

@@ -13,13 +13,14 @@ import {
   IonTitle, IonToggle,
   IonToolbar
 } from '@ionic/angular/standalone';
+import {SettingsTabMenuComponent} from "../../components/settings-tab-menu/settings-tab-menu.component";
 
 @Component({
   selector: 'app-appearance',
   templateUrl: './appearance.page.html',
   styleUrls: ['./appearance.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCol, IonGrid, IonRow, IonCard, IonCardContent, IonItem, IonLabel, IonToggle, IonButton]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCol, IonGrid, IonRow, IonCard, IonCardContent, IonItem, IonLabel, IonToggle, IonButton, SettingsTabMenuComponent]
 })
 export class AppearancePage implements OnInit {
 
@@ -38,12 +39,16 @@ export class AppearancePage implements OnInit {
 
   toggleTheme() {
     this.isDarkMode = !this.isDarkMode;
-    localStorage.setItem('darkMode', this.isDarkMode.toString());
     this.applyTheme()
   }
 
   applyTheme() {
     document.documentElement.classList.toggle('ion-palette-dark', this.isDarkMode);
+  }
+
+  saveSettings() {
+    console.log("Appearance saveSettings");
+    localStorage.setItem('darkMode', this.isDarkMode.toString());
   }
 
 }

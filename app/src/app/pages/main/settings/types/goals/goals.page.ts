@@ -12,13 +12,14 @@ import {
     IonTitle,
     IonToolbar
 } from '@ionic/angular/standalone';
+import {SettingsTabMenuComponent} from "../../components/settings-tab-menu/settings-tab-menu.component";
 
 @Component({
   selector: 'app-goals',
   templateUrl: './goals.page.html',
   styleUrls: ['./goals.page.scss'],
   standalone: true,
-    imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCol, IonGrid, IonRow, IonCard, IonCardContent, IonInput, IonItem, IonLabel, IonSelect, IonSelectOption]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCol, IonGrid, IonRow, IonCard, IonCardContent, IonInput, IonItem, IonLabel, IonSelect, IonSelectOption, SettingsTabMenuComponent]
 })
 export class GoalsPage implements OnInit {
 
@@ -27,4 +28,7 @@ export class GoalsPage implements OnInit {
   ngOnInit() {
   }
 
+  saveSettings() {
+    console.log("AccountManagementPage saveSettings");
+  }
 }

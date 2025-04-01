@@ -2,7 +2,7 @@
   <svg width="80" height="80" style="position: absolute; top: -10px; left: -10px;">
     <circle cx="0" cy="0" r="80" fill="black" />
   </svg>
-  <ion-grid [fixed]="true">
+  <ion-grid [fixed]="true" >
     <ion-row>
       <ion-col>
         <div class="header">
@@ -32,4 +32,6 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+  <app-settings-tab-menu (save)="saveSettings()"/>
 </ion-content>
+
