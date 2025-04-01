@@ -46,6 +46,8 @@ export class GoalsPage implements OnInit {
     setTimeout(() => {
       this.settingsSaved = false;
     }, 3000);
+
+    this.saveData();
   }
 
   runValidation() : boolean {
@@ -71,6 +73,10 @@ export class GoalsPage implements OnInit {
     }
 
     return true;
+  }
+
+  saveData() : void {
+
   }
 
 }
