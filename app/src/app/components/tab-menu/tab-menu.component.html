@@ -1,13 +1,24 @@
+<ion-toolbar>
 <ion-tabs>
   <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="profile">
+    <ion-tab-button *ngIf="profile" [routerLink]="['/profile']">
       Profile
     </ion-tab-button>
-    <ion-tab-button tab="library">
+    <ion-tab-button *ngIf="!profile" [routerLink]="['/settings']">
+      Back
+    </ion-tab-button>
+    <ion-tab-button *ngIf="!homepage" [routerLink]="['/add']">
       Add
     </ion-tab-button>
-    <ion-tab-button tab="settings">
+    <ion-tab-button *ngIf="homepage" [routerLink]="['/homepage']">
+      Homepage
+    </ion-tab-button>
+    <ion-tab-button *ngIf="settings" [routerLink]="['/settings']">
       Settings
+    </ion-tab-button>
+    <ion-tab-button *ngIf="!settings" [routerLink]="['/homepage']">
+      Back
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>
+</ion-toolbar>

@@ -6,11 +6,8 @@ import {
     IonCardContent,
     IonCol,
     IonContent,
-    IonGrid,
-    IonHeader, IonInput, IonItem, IonLabel,
-    IonRow, IonSelect, IonSelectOption,
-    IonTitle,
-    IonToolbar
+    IonGrid, IonInput, IonItem, IonLabel,
+    IonRow
 } from '@ionic/angular/standalone';
 import {SettingsTabMenuComponent} from "../../components/settings-tab-menu/settings-tab-menu.component";
 import {NotificationComponent} from "../../../../../components/notification/notification.component";
