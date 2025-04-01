@@ -1,7 +1,17 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {IonContent, IonHeader, IonIcon, IonTitle, IonToolbar} from '@ionic/angular/standalone';
+import {
+  IonCard,
+  IonCardContent,
+  IonCol,
+  IonContent, IonGrid,
+  IonHeader,
+  IonIcon,
+  IonRow,
+  IonTitle,
+  IonToolbar
+} from '@ionic/angular/standalone';
 import {TabMenuComponent} from "../../../../components/tab-menu/tab-menu.component";
 import Chart from 'chart.js/auto';
 
@@ -11,7 +21,7 @@ import Chart from 'chart.js/auto';
   templateUrl: './product-information.page.html',
   styleUrls: ['./product-information.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, TabMenuComponent]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, TabMenuComponent, IonRow, IonCol, IonCard, IonCardContent, IonGrid]
 })
 export class ProductInformationPage implements OnInit, AfterViewInit {
 
@@ -52,9 +62,9 @@ export class ProductInformationPage implements OnInit, AfterViewInit {
         label: 'Product Information',
         data: [this.carbs, this.fibre, this.protein],
         backgroundColor: [
-          'rgb(255, 99, 132)',
-          'rgb(75, 192, 192)',
-          'rgb(255, 205, 86)'
+          'rgb(0,122,255)',
+          'rgb(208, 54, 204)',
+          'rgb(243,243,15)',
         ]
       }]
     };
