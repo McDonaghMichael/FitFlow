@@ -21,22 +21,36 @@ import {NotificationComponent} from "../../../../../components/notification/noti
   templateUrl: './account-management.page.html',
   styleUrls: ['./account-management.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonCheckbox, IonCol, IonGrid, IonInput, IonItem, IonList, IonRow, RouterLink, SettingsTabMenuComponent, LogoutConfirmationComponent, NotificationComponent]
+  imports: [IonContent, CommonModule, FormsModule, IonCol, IonGrid, IonInput, IonItem, IonList, IonRow, SettingsTabMenuComponent, NotificationComponent]
 })
 export class AccountManagementPage implements OnInit {
 
   settingsSaved: boolean = false;
+
+  email: string = "";
+  password: string = "";
+  newPassword: string = "";
+  confirmNewPassword: string = "";
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  saveSettings() {
+  saveSettings() : void {
     this.settingsSaved = true;
     setTimeout(() => {
       this.settingsSaved = false;
     }, 3000);
+
+    this.saveData();
+  }
+
+  saveData() : void {
+    console.log(this.email);
+    console.log(this.password);
+    console.log(this.newPassword);
+    console.log(this.confirmNewPassword);
   }
 
 }

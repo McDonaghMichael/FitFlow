@@ -2,6 +2,9 @@
   <svg width="1000" height="1000" style="position: absolute; top: -10px; left: -10px;">
     <circle cx="50" cy="0" r="80" fill="black" />
   </svg>
+  <div *ngIf="issueReported" >
+    <app-notification [message]="'Issue Reported'"></app-notification>
+  </div>
   <ion-grid [fixed]="true" style="z-index: 1">
     <ion-row>
       <ion-col>

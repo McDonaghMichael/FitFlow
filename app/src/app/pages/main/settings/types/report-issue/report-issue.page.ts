@@ -13,15 +13,18 @@ import {
   IonToolbar
 } from '@ionic/angular/standalone';
 import {SettingsTabMenuComponent} from "../../components/settings-tab-menu/settings-tab-menu.component";
+import {NotificationComponent} from "../../../../../components/notification/notification.component";
 
 @Component({
   selector: 'app-report-issue',
   templateUrl: './report-issue.page.html',
   styleUrls: ['./report-issue.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCard, IonCardContent, IonCol, IonGrid, IonItem, IonLabel, IonRow, IonToggle, IonButton, IonInput, IonTextarea, SettingsTabMenuComponent]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCard, IonCardContent, IonCol, IonGrid, IonItem, IonLabel, IonRow, IonToggle, IonButton, IonInput, IonTextarea, SettingsTabMenuComponent, NotificationComponent]
 })
 export class ReportIssuePage implements OnInit {
+
+  issueReported: boolean = false;
 
   constructor() { }
 
@@ -29,7 +32,10 @@ export class ReportIssuePage implements OnInit {
   }
 
   submitReport() {
-
+    this.issueReported = true;
+    setTimeout(() => {
+      this.issueReported = false;
+    }, 3000);
   }
 
 }
