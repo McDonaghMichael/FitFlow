@@ -12,7 +12,16 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        // ITEMS HERE
+        <ion-card>
+          <ion-card-content>
+            <ion-item>
+              <ion-label>Appearance</ion-label>
+              <ion-button (click)="toggleTheme()">
+                {{ isDarkMode ? 'Dark' : 'Light' }}
+              </ion-button>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>
