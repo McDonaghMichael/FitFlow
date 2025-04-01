@@ -1,13 +1,40 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Fitness Data</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Fitness Data</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <svg width="1000" height="80" style="position: absolute; top: -10px; left: -10px;">
+    <circle cx="400" cy="0" r="80" fill="black" />
+  </svg>
+  <ion-grid [fixed]="true">
+    <ion-row>
+      <ion-col>
+        <div class="header">
+          <h1>Fitness Data</h1>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <ion-card-content>
+            <ion-item>
+              <ion-label>Height</ion-label>
+              <ion-input slot="end" [clearOnEdit]="true" placeholder="187cm" required="true"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Weight</ion-label>
+              <ion-input slot="end" [clearOnEdit]="true" placeholder="99kg" required="true"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Gender</ion-label>
+                <ion-select slot="end" placeholder="Unselected">
+                  <ion-select-option value="male">Male</ion-select-option>
+                  <ion-select-option value="female">Female</ion-select-option>
+                  <ion-select-option value="n/a">Prefer Not To Say</ion-select-option>
+                </ion-select>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
