@@ -4,7 +4,7 @@ import {
   IonTabBar,
   IonTabButton,
   IonTabs,
-  IonTab, IonToolbar
+  IonTab, IonToolbar, IonFooter
 } from "@ionic/angular/standalone";
 import {MatIcon} from "@angular/material/icon";
 import {RouterLink} from "@angular/router";
@@ -22,7 +22,8 @@ import {NgIf} from "@angular/common";
     MatIcon,
     IonToolbar,
     RouterLink,
-    NgIf
+    NgIf,
+    IonFooter
   ]
 })
 export class TabMenuComponent  implements OnInit {

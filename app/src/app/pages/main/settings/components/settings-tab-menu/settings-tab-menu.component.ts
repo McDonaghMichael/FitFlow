@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {IonTabBar, IonTabButton, IonTabs, IonToolbar} from "@ionic/angular/standalone";
+import {IonFooter, IonTabBar, IonTabButton, IonTabs, IonToolbar} from "@ionic/angular/standalone";
 import {RouterLink} from "@angular/router";
 import {NgIf} from "@angular/common";
 
@@ -13,7 +13,8 @@ import {NgIf} from "@angular/common";
     IonTabs,
     IonToolbar,
     RouterLink,
-    NgIf
+    NgIf,
+    IonFooter
   ]
 })
 export class SettingsTabMenuComponent  implements OnInit {

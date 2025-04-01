@@ -1,15 +1,18 @@
-<ion-toolbar>
-  <ion-tabs>
-    <ion-tab-bar>
-      <ion-tab-button [routerLink]="['/settings']">
-        Back
-      </ion-tab-button>
-      <ion-tab-button *ngIf="!sub" (click)="onSave()">
-        Save
-      </ion-tab-button>
-      <ion-tab-button *ngIf="sub" (click)="onSubmit()">
-        Submit
-      </ion-tab-button>
-    </ion-tab-bar>
-  </ion-tabs>
-</ion-toolbar>
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar>
+        <ion-tab-button [routerLink]="['/settings']">
+          Back
+        </ion-tab-button>
+        <ion-tab-button *ngIf="!sub" (click)="onSave()">
+          Save
+        </ion-tab-button>
+        <ion-tab-button *ngIf="sub" (click)="onSubmit()">
+          Submit
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+
+</ion-footer>
