@@ -22,9 +22,19 @@ import {
 })
 export class NotificationsPage implements OnInit {
 
+  isWaterReminder = false;
+
   constructor() { }
 
   ngOnInit() {
+    const waterReminder = localStorage.getItem('waterReminder');
+    if (waterReminder) {
+      this.isWaterReminder = waterReminder === 'true';
+    }
   }
 
+  toggleWaterReminder() {
+    this.isWaterReminder = !this.isWaterReminder;
+    localStorage.setItem('waterReminder', this.isWaterReminder.toString());
+  }
 }

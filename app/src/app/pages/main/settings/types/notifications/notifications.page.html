@@ -16,7 +16,7 @@
           <ion-card-content>
             <ion-item>
               <ion-label>Water Reminder</ion-label>
-              <ion-toggle slot="end"></ion-toggle>
+              <ion-toggle slot="end" (ionChange)="toggleWaterReminder()" [checked]="isWaterReminder"></ion-toggle>
             </ion-item>
           </ion-card-content>
         </ion-card>
