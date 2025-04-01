@@ -2,6 +2,9 @@
   <svg width="1000" height="80" style="position: absolute; top: -10px; left: -10px;">
     <circle cx="400" cy="0" r="80" fill="black" />
   </svg>
+  <div *ngIf="settingsSaved" >
+    <app-settings-saved></app-settings-saved>
+  </div>
   <ion-grid [fixed]="true">
     <ion-row>
       <ion-col>
