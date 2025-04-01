@@ -9,11 +9,15 @@ import {
 import {MatIcon} from "@angular/material/icon";
 import {RouterLink} from "@angular/router";
 import {NgIf} from "@angular/common";
+import { heroUsers } from '@ng-icons/heroicons/outline';
+import {NgIcon, provideIcons} from "@ng-icons/core";
+import { featherHome, featherArrowLeft, featherUser, featherSettings, featherPlusCircle, featherType, featherAlignJustify} from '@ng-icons/feather-icons';
 
 @Component({
   selector: 'tab-menu',
   templateUrl: './tab-menu.component.html',
   styleUrls: ['./tab-menu.component.scss'],
+  providers: [provideIcons({ featherHome, featherArrowLeft, featherUser, featherSettings, featherPlusCircle, featherType, featherAlignJustify })],
   imports: [
     IonTabs,
     IonTabBar,
@@ -23,7 +27,8 @@ import {NgIf} from "@angular/common";
     IonToolbar,
     RouterLink,
     NgIf,
-    IonFooter
+    IonFooter,
+    NgIcon
   ]
 })
 export class TabMenuComponent  implements OnInit {

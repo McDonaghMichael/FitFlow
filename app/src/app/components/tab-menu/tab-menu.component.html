@@ -3,45 +3,45 @@
     <ion-tabs>
       <ion-tab-bar slot="bottom">
           <ion-tab-button *ngIf="profile && !product && !productInformation" [routerLink]="['/profile']">
-            Profile
+            <ng-icon name="featherUser" />
           </ion-tab-button>
           <ion-tab-button *ngIf="!profile && !product && !productInformation" [routerLink]="['/homepage']">
-            Back
+            <ng-icon name="featherArrowLeft" />
           </ion-tab-button>
           <ion-tab-button *ngIf="!homepage && !product && !productInformation" (click)="onAddMenu()">
-            Add
+            <ng-icon name="featherPlusCircle" />
           </ion-tab-button>
           <ion-tab-button *ngIf="homepage && !product && !productInformation" [routerLink]="['/homepage']">
-            Homepage
+            <ng-icon name="featherHome" />
           </ion-tab-button>
           <ion-tab-button *ngIf="settings && !product && !productInformation" [routerLink]="['/settings']">
-            Settings
+            <ng-icon name="featherSettings" />
           </ion-tab-button>
         <ion-tab-button *ngIf="!settings && !product && !productInformation" [routerLink]="['/homepage']">
-          Back
+          <ng-icon name="featherArrowLeft" />
         </ion-tab-button>
 
         <ion-tab-button *ngIf="!barcodeScanner && product && !productInformation" [routerLink]="['/homepage']">
-          Back
+          <ng-icon name="featherArrowLeft" />
         </ion-tab-button>
 
         <ion-tab-button *ngIf="!barcodeScanner && product && !productInformation" [routerLink]="['/product/enter-manually']">
-          Enter Manually
+          <ng-icon name="featherType" />
         </ion-tab-button>
 
         <ion-tab-button *ngIf="!enterManually && product && !productInformation" [routerLink]="['/homepage']">
-          Back
+          <ng-icon name="featherArrowLeft" />
         </ion-tab-button>
 
         <ion-tab-button *ngIf="!enterManually && product && !productInformation" [routerLink]="['/product/barcode-scanner']">
-          Barcode Scanner
+          <ng-icon name="featherAlignJustify" />
         </ion-tab-button>
 
         <ion-tab-button *ngIf="!enterManually && !product && productInformation" [routerLink]="['/product/enter-manually']" (click)="resetItem()">
-          Back
+          <ng-icon name="featherArrowLeft" />
         </ion-tab-button>
         <ion-tab-button *ngIf="!enterManually && !product && productInformation" (click)="onSave()">
-          Add
+          <ng-icon name="featherPlusCircle" />
         </ion-tab-button>
 
       </ion-tab-bar>
