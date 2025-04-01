@@ -14,6 +14,7 @@ import {
 } from '@ionic/angular/standalone';
 import {TabMenuComponent} from "../../../../components/tab-menu/tab-menu.component";
 import Chart from 'chart.js/auto';
+import {NotificationComponent} from "../../../../components/notification/notification.component";
 
 
 @Component({
@@ -21,11 +22,12 @@ import Chart from 'chart.js/auto';
   templateUrl: './product-information.page.html',
   styleUrls: ['./product-information.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, TabMenuComponent, IonRow, IonCol, IonCard, IonCardContent, IonGrid]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, TabMenuComponent, IonRow, IonCol, IonCard, IonCardContent, IonGrid, NotificationComponent]
 })
 export class ProductInformationPage implements OnInit, AfterViewInit {
 
   selectedProduct: number = 0;
+  productAdded: boolean = false;
 
   name: string = '';
   brand: string = '';
@@ -102,6 +104,13 @@ export class ProductInformationPage implements OnInit, AfterViewInit {
       this.fibre = selectedFood.fibre;
       this.protein = selectedFood.protein;
     }
+  }
+
+  toggleAddedProduct(): void {
+    this.productAdded = true;
+    setTimeout(() => {
+      this.productAdded = false;
+    }, 2000);
   }
 
 }

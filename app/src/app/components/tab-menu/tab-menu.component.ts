@@ -37,6 +37,7 @@ export class TabMenuComponent  implements OnInit {
   @Input() productInformation: boolean = false;
 
   @Output() addMenu = new EventEmitter<void>();
+  @Output() save = new EventEmitter<void>();
 
   constructor() { }
 
@@ -44,6 +45,11 @@ export class TabMenuComponent  implements OnInit {
 
   onAddMenu() {
     this.addMenu.emit();
+  }
+
+
+  onSave() {
+    this.save.emit();
   }
 
   resetItem(): void {

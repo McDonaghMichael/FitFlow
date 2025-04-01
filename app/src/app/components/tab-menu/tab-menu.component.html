@@ -40,7 +40,7 @@
         <ion-tab-button *ngIf="!enterManually && !product && productInformation" [routerLink]="['/product/enter-manually']" (click)="resetItem()">
           Back
         </ion-tab-button>
-        <ion-tab-button *ngIf="!enterManually && !product && productInformation" [routerLink]="['/product/enter-manually']">
+        <ion-tab-button *ngIf="!enterManually && !product && productInformation" (click)="onSave()">
           Add
         </ion-tab-button>
 
