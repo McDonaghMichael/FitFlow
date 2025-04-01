@@ -55,7 +55,6 @@ export class ReportIssuePage implements OnInit {
       this.error = false;
     }, 3000);
 
-    console.log(this.issue.length)
     if(this.issue.length <= 0) {
       this.error = true;
       this.errorMessage = "Issue cannot be empty";

@@ -5,6 +5,9 @@
   <div *ngIf="settingsSaved" >
     <app-notification [message]="'Settings Updated'"></app-notification>
   </div>
+  <div *ngIf="error" >
+    <app-error-alert [message]="errorMessage"></app-error-alert>
+  </div>
   <ion-grid [fixed]="true" style="z-index: 1">
     <ion-row>
       <ion-col>
@@ -19,17 +22,17 @@
           <ion-card-content>
             <ion-item>
               <ion-label>Daily Protein Intake</ion-label>
-              <ion-input slot="end" [clearOnEdit]="true" placeholder="180g" required="true"></ion-input>
+              <ion-input [(ngModel)]="proteinIntake" slot="end" [clearOnEdit]="true" placeholder="180g" required="true"></ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label>Daily Step Goal</ion-label>
-              <ion-input slot="end" [clearOnEdit]="true" placeholder="10,000" required="true"></ion-input>
+              <ion-input [(ngModel)]="stepGoal" slot="end" [clearOnEdit]="true" placeholder="10,000" required="true"></ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label>Calorie Intake</ion-label>
-              <ion-input slot="end" [clearOnEdit]="true" placeholder="2,000" required="true"></ion-input>
+              <ion-input [(ngModel)]="calorieIntake" slot="end" [clearOnEdit]="true" placeholder="2,000" required="true"></ion-input>
             </ion-item>
           </ion-card-content>
         </ion-card>
