@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle} from "@ionic/angular/standalone";
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-add-menu',
@@ -10,7 +11,8 @@ import {IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle} from "@
     IonCard,
     IonCardContent,
     IonCardHeader,
-    IonCardTitle
+    IonCardTitle,
+    RouterLink
   ]
 })
 export class AddMenuComponent  implements OnInit {
