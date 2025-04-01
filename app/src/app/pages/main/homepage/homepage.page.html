@@ -7,5 +7,6 @@
     <circle cx="500" cy="20" r="170" fill="black" />
   </svg>
 
-  <tab-menu [profile]="true" [homepage]="false" [settings]="true"></tab-menu>
+  <app-add-menu *ngIf="addMenu"></app-add-menu>
+  <tab-menu [profile]="true" [homepage]="false" [settings]="true" (addMenu)="toggleAddMenu()"></tab-menu>
 </ion-content>

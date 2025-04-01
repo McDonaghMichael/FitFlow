@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {
   IonIcon,
   IonTabBar,
@@ -32,8 +32,15 @@ export class TabMenuComponent  implements OnInit {
   @Input() homepage: boolean = false;
   @Input() settings: boolean = false;
 
+  @Output() addMenu = new EventEmitter<void>();
+
   constructor() { }
 
   ngOnInit() {}
+
+  onAddMenu() {
+    this.addMenu.emit();
+  }
+
 
 }

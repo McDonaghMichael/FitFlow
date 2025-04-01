@@ -8,7 +8,7 @@
         <ion-tab-button *ngIf="!profile" [routerLink]="['/homepage']">
           Back
         </ion-tab-button>
-        <ion-tab-button *ngIf="!homepage" [routerLink]="['/add']">
+        <ion-tab-button *ngIf="!homepage" (click)="onAddMenu()">
           Add
         </ion-tab-button>
         <ion-tab-button *ngIf="homepage" [routerLink]="['/homepage']">
