@@ -28,9 +28,12 @@ import {NgIf} from "@angular/common";
 })
 export class TabMenuComponent  implements OnInit {
 
+  @Input() product: boolean = false;
   @Input() profile: boolean = false;
   @Input() homepage: boolean = false;
   @Input() settings: boolean = false;
+  @Input() barcodeScanner: boolean = false;
+  @Input() enterManually: boolean = false;
 
   @Output() addMenu = new EventEmitter<void>();
 

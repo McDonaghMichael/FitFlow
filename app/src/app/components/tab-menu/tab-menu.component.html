@@ -2,24 +2,41 @@
   <ion-toolbar>
     <ion-tabs>
       <ion-tab-bar slot="bottom">
-        <ion-tab-button *ngIf="profile" [routerLink]="['/profile']">
-          Profile
-        </ion-tab-button>
-        <ion-tab-button *ngIf="!profile" [routerLink]="['/homepage']">
+          <ion-tab-button *ngIf="profile && !product" [routerLink]="['/profile']">
+            Profile
+          </ion-tab-button>
+          <ion-tab-button *ngIf="!profile && !product" [routerLink]="['/homepage']">
+            Back
+          </ion-tab-button>
+          <ion-tab-button *ngIf="!homepage && !product" (click)="onAddMenu()">
+            Add
+          </ion-tab-button>
+          <ion-tab-button *ngIf="homepage && !product" [routerLink]="['/homepage']">
+            Homepage
+          </ion-tab-button>
+          <ion-tab-button *ngIf="settings && !product" [routerLink]="['/settings']">
+            Settings
+          </ion-tab-button>
+        <ion-tab-button *ngIf="!settings && !product" [routerLink]="['/homepage']">
           Back
         </ion-tab-button>
-        <ion-tab-button *ngIf="!homepage" (click)="onAddMenu()">
-          Add
-        </ion-tab-button>
-        <ion-tab-button *ngIf="homepage" [routerLink]="['/homepage']">
-          Homepage
-        </ion-tab-button>
-        <ion-tab-button *ngIf="settings" [routerLink]="['/settings']">
-          Settings
-        </ion-tab-button>
-        <ion-tab-button *ngIf="!settings" [routerLink]="['/homepage']">
+
+        <ion-tab-button *ngIf="!barcodeScanner && product" [routerLink]="['/homepage']">
           Back
         </ion-tab-button>
+
+        <ion-tab-button *ngIf="!barcodeScanner && product" [routerLink]="['/product/enter-manually']">
+          Enter Manually
+        </ion-tab-button>
+
+        <ion-tab-button *ngIf="!enterManually && product" [routerLink]="['/homepage']">
+          Back
+        </ion-tab-button>
+
+        <ion-tab-button *ngIf="!enterManually && product" [routerLink]="['/product/barcode-scanner']">
+          Barcode Scanner
+        </ion-tab-button>
+
       </ion-tab-bar>
     </ion-tabs>
   </ion-toolbar>
