@@ -5,6 +5,9 @@
   <div *ngIf="issueReported" >
     <app-notification [message]="'Issue Reported'"></app-notification>
   </div>
+  <div *ngIf="error" >
+    <app-error-alert [message]="errorMessage"></app-error-alert>
+  </div>
   <ion-grid [fixed]="true" style="z-index: 1">
     <ion-row>
       <ion-col>
@@ -19,6 +22,7 @@
           <ion-card-content>
             <ion-item>
               <ion-textarea
+                [(ngModel)]="issue"
                 class="report-issue-input"
                 [clearOnEdit]="true"
                 placeholder="Enter text..."
