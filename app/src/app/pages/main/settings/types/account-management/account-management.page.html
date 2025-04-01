@@ -6,6 +6,10 @@
     <app-notification [message]="'Settings Updated'"></app-notification>
   </div>
 
+  <div *ngIf="error" >
+    <app-error-alert [message]="errorMessage"></app-error-alert>
+  </div>
+
   <ion-grid [fixed]="true" >
     <ion-row>
       <ion-col>
