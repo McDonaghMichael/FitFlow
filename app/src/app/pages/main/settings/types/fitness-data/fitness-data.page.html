@@ -5,6 +5,9 @@
   <div *ngIf="settingsSaved" >
     <app-notification [message]="'Settings Updated'"></app-notification>
   </div>
+  <div *ngIf="error" >
+    <app-error-alert [message]="errorMessage"></app-error-alert>
+  </div>
   <ion-grid [fixed]="true">
     <ion-row>
       <ion-col>
@@ -19,17 +22,17 @@
           <ion-card-content>
             <ion-item>
               <ion-label>Height</ion-label>
-              <ion-input slot="end" [clearOnEdit]="true" placeholder="187cm" required="true"></ion-input>
+              <ion-input [(ngModel)]="height" slot="end" [clearOnEdit]="true" placeholder="187cm" required="true"></ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label>Weight</ion-label>
-              <ion-input slot="end" [clearOnEdit]="true" placeholder="99kg" required="true"></ion-input>
+              <ion-input [(ngModel)]="weight" slot="end" [clearOnEdit]="true" placeholder="99kg" required="true"></ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label>Gender</ion-label>
-                <ion-select slot="end" placeholder="Unselected">
+                <ion-select [(ngModel)]="gender" slot="end" placeholder="Unselected">
                   <ion-select-option value="male">Male</ion-select-option>
                   <ion-select-option value="female">Female</ion-select-option>
                   <ion-select-option value="n/a">Prefer Not To Say</ion-select-option>
