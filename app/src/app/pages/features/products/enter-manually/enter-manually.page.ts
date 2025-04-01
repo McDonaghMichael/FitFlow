@@ -27,12 +27,13 @@ export class EnterManuallyPage implements OnInit {
   selectedProduct: number = 0;
 
   foodArray = [
-    { id: "aaa", name: 'Apple', brand: 'Tesco', calories: 95, barcodeNumber: 1000 },
-    { id: "aba", name: 'Banana', brand: 'Lidl', calories: 105, barcodeNumber: 1400 },
-    { id: "aaea", name: 'Orange Juice', brand: 'Aldi', calories: 120, barcodeNumber: 143000 },
-    { id: "aa43a", name: 'Granola Bar', brand: 'Dunnes', calories: 200, barcodeNumber: 1000 },
-    { id: "agaa", name: 'Apple Pie', brand: 'Lidl', calories: 250, barcodeNumber: 100230 },
+    { id: "aaa", name: 'Apple', brand: 'Tesco', calories: 95, carbs: 25, protein: 0.5, fibre: 4, rating: 4.5, barcodeNumber: 1000 },
+    { id: "aba", name: 'Banana', brand: 'Lidl', calories: 105, carbs: 27, protein: 1.3, fibre: 3.1, rating: 4.7, barcodeNumber: 1400 },
+    { id: "aaea", name: 'Orange Juice', brand: 'Aldi', calories: 120, carbs: 30, protein: 2, fibre: 0.5, rating: 4.2, barcodeNumber: 143000 },
+    { id: "aa43a", name: 'Granola Bar', brand: 'Dunnes', calories: 200, carbs: 30, protein: 4, fibre: 5, rating: 4.0, barcodeNumber: 1000 },
+    { id: "agaa", name: 'Apple Pie', brand: 'Lidl', calories: 250, carbs: 35, protein: 3, fibre: 3, rating: 3.8, barcodeNumber: 100230 },
   ];
+
 
   filteredFoodArray: any = [];
 
