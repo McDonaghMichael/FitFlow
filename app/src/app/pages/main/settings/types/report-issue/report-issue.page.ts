@@ -1,14 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import {
+  IonButton,
+  IonCard,
+  IonCardContent,
+  IonCol,
+  IonContent,
+  IonGrid,
+  IonHeader, IonInput, IonItem, IonLabel, IonRow,
+  IonTitle, IonToggle,
+  IonToolbar
+} from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-report-issue',
   templateUrl: './report-issue.page.html',
   styleUrls: ['./report-issue.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCard, IonCardContent, IonCol, IonGrid, IonItem, IonLabel, IonRow, IonToggle, IonButton, IonInput]
 })
 export class ReportIssuePage implements OnInit {
 
