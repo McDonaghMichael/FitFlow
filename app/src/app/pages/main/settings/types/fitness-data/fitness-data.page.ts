@@ -13,14 +13,14 @@ import {
   IonToolbar
 } from '@ionic/angular/standalone';
 import {SettingsTabMenuComponent} from "../../components/settings-tab-menu/settings-tab-menu.component";
-import {SettingsSavedComponent} from "../../components/settings-saved/settings-saved.component";
+import {NotificationComponent} from "../../../../../components/notification/notification.component";
 
 @Component({
   selector: 'app-fitness-data',
   templateUrl: './fitness-data.page.html',
   styleUrls: ['./fitness-data.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCol, IonGrid, IonInput, IonItem, IonList, IonRow, IonCard, IonCardContent, IonLabel, IonNote, IonSelect, IonSelectOption, SettingsTabMenuComponent, SettingsSavedComponent]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCol, IonGrid, IonInput, IonItem, IonList, IonRow, IonCard, IonCardContent, IonLabel, IonNote, IonSelect, IonSelectOption, SettingsTabMenuComponent, NotificationComponent]
 })
 export class FitnessDataPage implements OnInit {
 

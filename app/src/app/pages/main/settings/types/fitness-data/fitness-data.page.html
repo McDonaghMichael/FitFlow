@@ -3,7 +3,7 @@
     <circle cx="400" cy="0" r="80" fill="black" />
   </svg>
   <div *ngIf="settingsSaved" >
-    <app-settings-saved></app-settings-saved>
+    <app-notification [message]="'Settings updated'"></app-notification>
   </div>
   <ion-grid [fixed]="true">
     <ion-row>

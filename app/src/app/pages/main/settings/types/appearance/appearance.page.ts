@@ -14,14 +14,14 @@ import {
   IonToolbar
 } from '@ionic/angular/standalone';
 import {SettingsTabMenuComponent} from "../../components/settings-tab-menu/settings-tab-menu.component";
-import {SettingsSavedComponent} from "../../components/settings-saved/settings-saved.component";
+import {NotificationComponent} from "../../../../../components/notification/notification.component";
 
 @Component({
   selector: 'app-appearance',
   templateUrl: './appearance.page.html',
   styleUrls: ['./appearance.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCol, IonGrid, IonRow, IonCard, IonCardContent, IonItem, IonLabel, IonToggle, IonButton, SettingsTabMenuComponent, SettingsSavedComponent]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCol, IonGrid, IonRow, IonCard, IonCardContent, IonItem, IonLabel, IonToggle, IonButton, SettingsTabMenuComponent, NotificationComponent]
 })
 export class AppearancePage implements OnInit {
 

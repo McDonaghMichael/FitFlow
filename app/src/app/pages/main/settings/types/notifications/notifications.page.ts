@@ -13,14 +13,14 @@ import {
   IonToolbar
 } from '@ionic/angular/standalone';
 import {SettingsTabMenuComponent} from "../../components/settings-tab-menu/settings-tab-menu.component";
-import {SettingsSavedComponent} from "../../components/settings-saved/settings-saved.component";
+import {NotificationComponent} from "../../../../../components/notification/notification.component";
 
 @Component({
   selector: 'app-notifications',
   templateUrl: './notifications.page.html',
   styleUrls: ['./notifications.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCol, IonGrid, IonRow, IonCard, IonCardContent, IonInput, IonItem, IonLabel, IonToggle, SettingsTabMenuComponent, SettingsSavedComponent]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCol, IonGrid, IonRow, IonCard, IonCardContent, IonInput, IonItem, IonLabel, IonToggle, SettingsTabMenuComponent, NotificationComponent]
 })
 export class NotificationsPage implements OnInit {
 

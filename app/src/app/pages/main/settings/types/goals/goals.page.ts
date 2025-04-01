@@ -13,14 +13,14 @@ import {
     IonToolbar
 } from '@ionic/angular/standalone';
 import {SettingsTabMenuComponent} from "../../components/settings-tab-menu/settings-tab-menu.component";
-import {SettingsSavedComponent} from "../../components/settings-saved/settings-saved.component";
+import {NotificationComponent} from "../../../../../components/notification/notification.component";
 
 @Component({
   selector: 'app-goals',
   templateUrl: './goals.page.html',
   styleUrls: ['./goals.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCol, IonGrid, IonRow, IonCard, IonCardContent, IonInput, IonItem, IonLabel, IonSelect, IonSelectOption, SettingsTabMenuComponent, SettingsSavedComponent]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCol, IonGrid, IonRow, IonCard, IonCardContent, IonInput, IonItem, IonLabel, IonSelect, IonSelectOption, SettingsTabMenuComponent, NotificationComponent]
 })
 export class GoalsPage implements OnInit {
 
