@@ -55,6 +55,10 @@ export class AccountManagementPage implements OnInit {
     this.error = false;
     this.errorMessage = "An error has occurred";
 
+    setTimeout(() => {
+      this.error = false;
+    }, 3000);
+
     if(this.newPassword !== this.confirmNewPassword) {
       this.error = true;
       this.errorMessage = "Passwords do not match";
