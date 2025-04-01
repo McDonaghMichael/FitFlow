@@ -1,13 +1,10 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>profile</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">profile</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="profile-image">
+    <img alt="Silhouette of mountains" class="circle-image" [src]="imageURL" />
+  </div>
+  <ion-card class="profile-card">
+    <ion-input [value]="description" [disabled]="!editMode">
+    </ion-input>
+  </ion-card>
+  <tab-menu [profile]="false" [homepage]="true" [settings]="true"></tab-menu>
 </ion-content>
