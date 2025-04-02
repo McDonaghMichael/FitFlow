@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {
   IonButton,
   IonCard,
@@ -35,6 +35,9 @@ import {NgIf} from "@angular/common";
 export class AddProductReviewComponent implements OnInit {
 
   @Input() showMenu: any= undefined;
+  @Output() addReview = new EventEmitter<{ author: string; review: string; rating: number }>();
+
+
   review: string = "";
   rating: number = 0;
 
@@ -42,10 +45,16 @@ export class AddProductReviewComponent implements OnInit {
 
   ngOnInit() {}
 
-  addProductReview() : void {
-    console.log(this.review);
-    console.log(this.rating);
+  addProductReview() {
+    if (this.review && this.rating) {
+      this.addReview.emit({ author: "michael", review: this.review, rating: this.rating });
+      this.review = "";
+      this.rating = 0;
+      this.closeMenu();
+    }
   }
+
+
 
   closeMenu() : void {
     this.showMenu = false;

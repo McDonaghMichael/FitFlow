@@ -66,4 +66,15 @@ export class ReviewsPage implements OnInit {
     this.showAddReview = !this.showAddReview;
   }
 
+  addReview(reviewData: { author: string, review: string, rating: number }) {
+    this.reviews.push({
+      id: "d",
+      author: reviewData.author,
+      review: reviewData.review,
+      rating: reviewData.rating
+    });
+
+    console.log(this.reviews);
+  }
+
 }
