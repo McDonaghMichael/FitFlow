@@ -30,7 +30,7 @@ export class EnterManuallyPage implements OnInit {
   foodArray: any = [];
   filteredFoodArray: any = [];
 
-  constructor(private router: Router, private productService: ProductService) { }
+  constructor(private productService: ProductService) { }
 
   ngOnInit() {
     this.productService.getProducts().subscribe({

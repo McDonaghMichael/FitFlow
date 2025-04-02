@@ -13,10 +13,10 @@
             <ng-icon name="featherSettings" />
           </ion-tab-button>
 
-        <ion-tab-button *ngIf="profilePage" (click)="closePage()">
+        <ion-tab-button *ngIf="profilePage" [routerLink]="['/homepage']">
           <ng-icon name="featherArrowLeft" />
         </ion-tab-button>
-        <ion-tab-button *ngIf="profilePage" (click)="closePage()">
+        <ion-tab-button *ngIf="profilePage" [routerLink]="['/homepage']">
           <ng-icon name="featherHome" />
         </ion-tab-button>
         <ion-tab-button *ngIf="profilePage" [routerLink]="['/settings']">
@@ -26,10 +26,10 @@
         <ion-tab-button *ngIf="settingsPage" [routerLink]="['/profile']">
           <ng-icon name="featherUser" />
         </ion-tab-button>
-        <ion-tab-button *ngIf="settingsPage" (click)="closePage()">
+        <ion-tab-button *ngIf="settingsPage" [routerLink]="['/homepage']">
           <ng-icon name="featherHome" />
         </ion-tab-button>
-        <ion-tab-button *ngIf="settingsPage" (click)="closePage()">
+        <ion-tab-button *ngIf="settingsPage" [routerLink]="['/homepage']">
           <ng-icon name="featherArrowLeft" />
         </ion-tab-button>
 

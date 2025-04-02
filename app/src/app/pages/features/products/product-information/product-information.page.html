@@ -15,7 +15,7 @@
               <ion-row class="ion-align-items-center">
                 <ion-col size="auto">
                   <div class="progress-circle carbs">
-                    <div class="progress-value">{{carbs}}%</div>
+                    <div class="progress-value">{{getMicroTotalGrams(carbs)}}%</div>
                   </div>
                 </ion-col>
                 <ion-col>
@@ -51,7 +51,7 @@
               <ion-row class="ion-align-items-center">
                 <ion-col size="auto">
                   <div class="progress-circle protein">
-                    <div class="progress-value">{{protein}}%</div>
+                    <div class="progress-value">{{getMicroTotalGrams(protein)}}%</div>
                   </div>
                 </ion-col>
                 <ion-col>
@@ -68,7 +68,7 @@
               <ion-row class="ion-align-items-center">
                 <ion-col size="auto">
                   <div class="progress-circle fibre">
-                    <div class="progress-value">{{fibre}}%</div>
+                    <div class="progress-value">{{getMicroTotalGrams(fibre)}}%</div>
                   </div>
                 </ion-col>
                 <ion-col>
