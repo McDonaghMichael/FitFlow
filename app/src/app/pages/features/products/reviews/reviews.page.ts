@@ -7,6 +7,7 @@ import Chart from "chart.js/auto";
 import {ProductReviewComponent} from "../../../../components/product-review/product-review.component";
 import {AddProductReviewComponent} from "../../../../components/add-product-review/add-product-review.component";
 import {TabMenuComponent} from "../../../../components/tab-menu/tab-menu.component";
+import {ProductService} from "../../../../services/product.service";
 
 @Component({
   selector: 'app-reviews',
@@ -26,22 +27,24 @@ export class ReviewsPage implements OnInit {
 
   ratingArray: number[] = [];
 
-  foodArray = [
-    { id: "aaa", name: 'Apple', brand: 'Tesco', calories: 95, carbs: 10, protein: 50, fibre: 40, rating: 3, barcodeNumber: 10800 },
-    { id: "aba", name: 'Banana', brand: 'Lidl', calories: 105, carbs: 27, protein: 10.3, fibre: 3.1, rating: 4, barcodeNumber: 1400 },
-    { id: "aaea", name: 'Orange Juice', brand: 'Aldi', calories: 120, carbs: 30, protein: 2, fibre: 0.5, rating: 2, barcodeNumber: 143000 },
-    { id: "aa43a", name: 'Granola Bar', brand: 'Dunnes', calories: 200, carbs: 30, protein: 4, fibre: 5, rating: 4, barcodeNumber: 1000 },
-    { id: "agaa", name: 'Apple Pie', brand: 'Lidl', calories: 250, carbs: 35, protein: 3, fibre: 3, rating: 5, barcodeNumber: 100230 },
-  ];
+  reviews: any[] = [];
 
-  reviews = [
-    {id: "aff", author: "michael", review: "bad", rating: 5}
-  ]
+  selectedFood: {
+    _id: string;
+    name: string;
+    brand: string;
+    calories: number;
+    protein: number;
+    fibre: number;
+    grams: number;
+    barcodeNumber: number;
+  } = {} as any;
 
-  constructor() { }
+  constructor(private productService: ProductService) { }
 
   ngOnInit() {
     this.updateProduct();
+    this.loadReviews();
     for (let i = 0; i < this.rating; i++) {
       this.ratingArray.push(i);
     }
@@ -53,13 +56,32 @@ export class ReviewsPage implements OnInit {
       this.selectedProduct = Number(prod);
     }
 
-    const selectedFood = this.foodArray.find(food => food.barcodeNumber === this.selectedProduct);
+    this.productService.getProductById(String(this.selectedProduct)).subscribe({
+      next: (data) => {
+        this.selectedFood = data;
+        if (this.selectedFood) {
+          this.name = this.selectedFood.name;
+          this.brand = this.selectedFood.brand;
+        }
+      },
+      error: (err) => {
+        console.error('Error fetching products:', err);
+      }
+    });
 
-    if (selectedFood) {
-      this.name = selectedFood.name;
-      this.brand = selectedFood.brand;
-      this.rating = selectedFood.rating;
-    }
+  }
+
+  loadReviews(): void {
+
+    this.productService.getReviews().subscribe({
+      next: (data) => {
+        this.reviews = data;
+      },
+      error: (err) => {
+        console.error('Error fetching products:', err);
+      }
+    });
+
   }
 
   toggleAddReviewMenu(): void {
@@ -67,14 +89,24 @@ export class ReviewsPage implements OnInit {
   }
 
   addReview(reviewData: { author: string, review: string, rating: number }) {
-    this.reviews.push({
-      id: "d",
-      author: reviewData.author,
-      review: reviewData.review,
-      rating: reviewData.rating
-    });
+    const review = {
+      reviewer: reviewData.author,
+      message: reviewData.review,
+      rating: Number(reviewData.rating),
+      barcodeNumber: this.selectedFood.barcodeNumber,
+      createdDate: Date.now()
+    };
 
-    console.log(this.reviews);
+    console.log(review);
+
+    this.productService.addProductReview(review).subscribe({
+      next: (response) => {
+        console.log('Review submitted successfully:', response);
+      },
+      error: (err) => {
+        console.error('Error submitting review:', err);
+      }
+    });
   }
 
 }

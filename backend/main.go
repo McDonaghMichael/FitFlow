@@ -35,6 +35,8 @@ func main() {
 	r.HandleFunc("/", handleHome)
 	r.HandleFunc("/products", routes.FetchProducts(client)).Methods("GET")
 	r.HandleFunc("/product/{barcode}", routes.FindProductByBarcode(client)).Methods("GET")
+	r.HandleFunc("/reviews", routes.FetchReviews(client)).Methods("GET")
+	r.HandleFunc("/review/create", routes.CreateReview(client)).Methods("POST")
 
 	corsHandler := cors.New(cors.Options{
 		AllowedOrigins: []string{"http://localhost:4200"},

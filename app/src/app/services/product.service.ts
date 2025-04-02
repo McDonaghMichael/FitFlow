@@ -17,4 +17,12 @@ export class ProductService {
   getProductById(barcodeNumber: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/product/${barcodeNumber}`);
   }
+
+  addProductReview(review: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/review/create`, review);
+  }
+
+  getReviews(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/reviews`);
+  }
 }

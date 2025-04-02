@@ -29,7 +29,7 @@ import {ProductService} from "../../../../services/product.service";
   providers: [provideIcons({ featherStar })],
   imports: [IonContent, CommonModule, FormsModule, TabMenuComponent, IonRow, IonCol, IonCard, IonCardContent, IonGrid, NotificationComponent, IonButton, NgIcon, RouterLink, ProductHeaderComponent]
 })
-export class ProductInformationPage implements OnInit, AfterViewInit {
+export class ProductInformationPage implements OnInit {
 
   selectedProduct: number = 0;
   productAdded: boolean = false;
@@ -67,10 +67,6 @@ export class ProductInformationPage implements OnInit, AfterViewInit {
     for (let i = 0; i < this.rating; i++) {
       this.ratingArray.push(i);
     }
-  }
-
-  ngAfterViewInit() {
-
   }
 
   initChart(): void {
