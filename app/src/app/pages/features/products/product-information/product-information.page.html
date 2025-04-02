@@ -1,7 +1,7 @@
 <ion-content [fullscreen]="true">
 
   <app-product-header [name]="name" [brand]="brand" [ratingArray]="ratingArray"></app-product-header>
-    <canvas id="myChart" width="100" height="100"></canvas>
+    <canvas [id]="chartID" width="100" height="100"></canvas>
 
   <div *ngIf="productAdded" >
     <app-notification [message]="'Item Added'"></app-notification>

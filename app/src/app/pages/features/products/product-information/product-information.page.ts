@@ -33,6 +33,8 @@ export class ProductInformationPage implements OnInit, AfterViewInit {
   selectedProduct: number = 0;
   productAdded: boolean = false;
 
+  chartID: string = "chart";
+
   name: string = '';
   brand: string = '';
   rating: number = 0;
@@ -66,7 +68,7 @@ export class ProductInformationPage implements OnInit, AfterViewInit {
   }
 
   initChart(): void {
-    const ctx = document.getElementById('myChart') as HTMLCanvasElement;
+    const ctx = document.getElementById(this.chartID) as HTMLCanvasElement;
     let data = {
       labels: [],
       datasets: [{

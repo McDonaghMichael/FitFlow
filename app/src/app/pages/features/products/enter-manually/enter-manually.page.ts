@@ -54,13 +54,10 @@ export class EnterManuallyPage implements OnInit {
       food.brand.toLowerCase().includes(value) ||
       food.barcodeNumber == value
     );
-    console.log(this.filteredFoodArray);
   }
 
   selectProduct(product: number): void {
     localStorage.setItem('product', String(product));
     this.selectedProduct = product;
-    console.log(this.selectedProduct);
-    //this.router.navigate(['/product/product-information']);
   }
 }
