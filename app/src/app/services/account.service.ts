@@ -21,4 +21,8 @@ export class AccountService {
   createAccount(data: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/account/create`, data);
   }
+
+  authenticateAccount(data: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/account/authenticate`, data);
+  }
 }

@@ -11,7 +11,8 @@ import {
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
-import {RouterLink} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
+import {AccountService} from "../../../services/account.service";
 
 @Component({
   selector: 'app-login',
@@ -22,9 +23,32 @@ import {RouterLink} from "@angular/router";
 })
 export class LoginPage implements OnInit {
 
-  constructor() { }
+  email: string = "";
+  password: string = "";
+
+  constructor(private accountService: AccountService, private router: Router) { }
 
   ngOnInit() {
+  }
+
+  authenticateAccount() {
+    const data = {
+      email: this.email,
+      password: this.password
+    };
+
+    this.accountService.authenticateAccount(data).subscribe({
+      next: (response) => {
+        if(response.authenticated) {
+          localStorage.setItem('authenticated', "true");
+          localStorage.setItem('account_email', this.email);
+          this.router.navigate(['/homepage']);
+        }
+      },
+      error: (err) => {
+        console.error('Error submitting account:', err);
+      }
+    });
   }
 
 }
