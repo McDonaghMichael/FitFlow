@@ -18,6 +18,8 @@ import {subscriptionLogsToBeFn} from "rxjs/internal/testing/TestScheduler";
 import {LoggingService} from "../../../services/logging.service";
 import {i} from "@angular/cdk/data-source.d-7cab2c9d";
 import {ProductService} from "../../../services/product.service";
+import {group} from "@angular/animations";
+import {StatsService} from "../../../utils/stats";
 
 @Component({
   selector: 'app-homepage',
@@ -38,15 +40,36 @@ export class HomepagePage implements OnInit, AfterViewInit {
   calories: number = 0;
   protein: number = 0;
 
-  constructor(private loggingService: LoggingService, private productService: ProductService) { }
+  weeklyCarbs: { [key: string]: number } = {
+  };
+
+  weeklyFibre: { [key: string]: number } = {
+  };
+
+  weeklyProtein: { [key: string]: number } = {
+  };
+
+
+  constructor(private loggingService: LoggingService, private productService: ProductService, private statsService: StatsService) { }
 
   ngOnInit() {
+    this.weeklyCarbs = this.statsService.getStats().carbs;
+    this.weeklyFibre = this.statsService.getStats().fibre;
+    this.weeklyProtein = this.statsService.getStats().protein;
+    console.log("Weekly Data Updated:", this.weeklyCarbs);
+
+    setTimeout(() => {
+      this.initChart();
+    }, 500);
   }
 
-  ngAfterViewInit() {
-    this.initChart();
 
-    this.loggingService.getLogsByAccountId(String(String(localStorage.getItem('account_id')))).subscribe({
+
+  ngAfterViewInit() {
+
+
+
+    this.loggingService.getLogsByAccountId(String(localStorage.getItem('account_id'))).subscribe({
       next: (data: any) => {
         this.logs = data;
         // @ts-ignore
@@ -71,33 +94,55 @@ export class HomepagePage implements OnInit, AfterViewInit {
 
   }
 
+
   initChart(): void {
     const ctx = document.getElementById('myChart') as HTMLCanvasElement;
 
-    const data = {
-      labels: ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'],
-      datasets: [
-        {
-          label: 'Calories',
-          data: [10, 20, 15, 25, 30, 35, 40],
-          borderColor: 'rgb(0,122,255)'
-        },
-        {
-          label: 'Protein',
-          data: [5, 15, 10, 20, 25, 30, 38],
-          borderColor: 'rgb(245,250,54)'
-        },
-        {
-          label: 'Fibre',
-          data: [8, 12, 18, 22, 28, 32, 36],
-          borderColor: 'rgb(208,54,202)'
-        }
-      ]
-    };
+    console.log(this.weeklyCarbs)
 
     new Chart(ctx, {
       type: 'line',
-      data: data,
+      data: {
+          labels: ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'],
+          datasets: [
+            {
+              label: 'Calories',
+              data: [
+                this.weeklyCarbs["Monday"],
+                this.weeklyCarbs["Tuesday"],
+                this.weeklyCarbs["Wednesday"],
+                this.weeklyCarbs["Thursday"],
+                this.weeklyCarbs["Friday"],
+                this.weeklyCarbs["Saturday"],
+                this.weeklyCarbs["Sunday"]],
+              borderColor: 'rgb(0,122,255)'
+            },
+            {
+              label: 'Protein',
+              data: [
+              this.weeklyProtein["Monday"],
+              this.weeklyProtein["Tuesday"],
+              this.weeklyProtein["Wednesday"],
+              this.weeklyProtein["Thursday"],
+              this.weeklyProtein["Friday"],
+              this.weeklyProtein["Saturday"],
+              this.weeklyProtein["Sunday"]],
+              borderColor: 'rgb(245,250,54)'
+            },
+            {
+              label: 'Fibre',
+              data: [
+                this.weeklyFibre["Monday"],
+                this.weeklyFibre["Tuesday"],
+                this.weeklyFibre["Wednesday"],
+                this.weeklyFibre["Thursday"],
+                this.weeklyFibre["Friday"],
+                this.weeklyFibre["Saturday"],
+                this.weeklyFibre["Sunday"]],
+              borderColor: 'rgb(208,54,202)'
+            }
+          ]
+        },
       options: {
         responsive: true,
         plugins: {

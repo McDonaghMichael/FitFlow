@@ -155,6 +155,7 @@ export class ProductInformationPage implements OnInit {
         const data = {
           account_id: String(localStorage.getItem('account_id')),
           barcodeNumber: this.selectedFood.barcodeNumber,
+          timestamp: Date.now(),
         };
 
         this.loggingService.createLog(data).subscribe({

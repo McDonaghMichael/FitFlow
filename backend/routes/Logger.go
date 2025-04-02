@@ -31,6 +31,7 @@ func CreateLog(client *mongo.Client) http.HandlerFunc {
 		result, err := collection.InsertOne(context.TODO(), bson.M{
 			"accountId":     record.AccountID,
 			"barcodeNumber": record.BarcodeNumber,
+			"timestamp":     record.Timestamp,
 		})
 		if err != nil {
 			log.Println("MongoDB Insert Error:", err)
