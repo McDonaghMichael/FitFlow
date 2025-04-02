@@ -34,7 +34,7 @@ import {NgIf} from "@angular/common";
 })
 export class AddProductReviewComponent implements OnInit {
 
-  @Input() showMenu = true;
+  @Input() showMenu: any= undefined;
   review: string = "";
   rating: number = 0;
 

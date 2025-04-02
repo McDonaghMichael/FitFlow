@@ -2,47 +2,68 @@
   <ion-toolbar>
     <ion-tabs>
       <ion-tab-bar slot="bottom">
-          <ion-tab-button *ngIf="profile && !product && !productInformation" [routerLink]="['/profile']">
+
+          <ion-tab-button *ngIf="homepage" [routerLink]="['/profile']">
             <ng-icon name="featherUser" />
           </ion-tab-button>
-          <ion-tab-button *ngIf="!profile && !product && !productInformation" [routerLink]="['/homepage']">
-            <ng-icon name="featherArrowLeft" />
-          </ion-tab-button>
-          <ion-tab-button *ngIf="!homepage && !product && !productInformation" (click)="onAddMenu()">
+          <ion-tab-button *ngIf="homepage" (click)="onAddMenu()">
             <ng-icon name="featherPlusCircle" />
           </ion-tab-button>
-          <ion-tab-button *ngIf="homepage && !product && !productInformation" [routerLink]="['/homepage']">
-            <ng-icon name="featherHome" />
-          </ion-tab-button>
-          <ion-tab-button *ngIf="settings && !product && !productInformation" [routerLink]="['/settings']">
+          <ion-tab-button *ngIf="homepage" [routerLink]="['/settings']">
             <ng-icon name="featherSettings" />
           </ion-tab-button>
-        <ion-tab-button *ngIf="!settings && !product && !productInformation" [routerLink]="['/homepage']">
+
+        <ion-tab-button *ngIf="profilePage" (click)="closePage()">
+          <ng-icon name="featherArrowLeft" />
+        </ion-tab-button>
+        <ion-tab-button *ngIf="profilePage" (click)="closePage()">
+          <ng-icon name="featherHome" />
+        </ion-tab-button>
+        <ion-tab-button *ngIf="profilePage" [routerLink]="['/settings']">
+          <ng-icon name="featherSettings" />
+        </ion-tab-button>
+
+        <ion-tab-button *ngIf="settingsPage" [routerLink]="['/profile']">
+          <ng-icon name="featherUser" />
+        </ion-tab-button>
+        <ion-tab-button *ngIf="settingsPage" (click)="closePage()">
+          <ng-icon name="featherHome" />
+        </ion-tab-button>
+        <ion-tab-button *ngIf="settingsPage" (click)="closePage()">
           <ng-icon name="featherArrowLeft" />
         </ion-tab-button>
 
-        <ion-tab-button *ngIf="!barcodeScanner && product && !productInformation" [routerLink]="['/homepage']">
+        <ion-tab-button *ngIf="barcodeScannerPage" (click)="closePage()">
           <ng-icon name="featherArrowLeft" />
         </ion-tab-button>
 
-        <ion-tab-button *ngIf="!barcodeScanner && product && !productInformation" [routerLink]="['/product/enter-manually']">
+        <ion-tab-button *ngIf="barcodeScannerPage" [routerLink]="['/product/enter-manually']">
           <ng-icon name="featherType" />
         </ion-tab-button>
 
-        <ion-tab-button *ngIf="!enterManually && product && !productInformation" [routerLink]="['/homepage']">
+        <ion-tab-button *ngIf="enterManuallyPage" (click)="closePage()">
           <ng-icon name="featherArrowLeft" />
         </ion-tab-button>
 
-        <ion-tab-button *ngIf="!enterManually && product && !productInformation" [routerLink]="['/product/barcode-scanner']">
+        <ion-tab-button *ngIf="enterManuallyPage" [routerLink]="['/product/barcode-scanner']">
           <ng-icon name="featherAlignJustify" />
         </ion-tab-button>
 
-        <ion-tab-button *ngIf="!enterManually && !product && productInformation" [routerLink]="['/product/enter-manually']" (click)="resetItem()">
+
+        <ion-tab-button *ngIf="productInformationPage" (click)="closePage()">
           <ng-icon name="featherArrowLeft" />
         </ion-tab-button>
-        <ion-tab-button *ngIf="!enterManually && !product && productInformation" (click)="onSave()">
+        <ion-tab-button *ngIf="productInformationPage" (click)="onSave()">
           <ng-icon name="featherPlusCircle" />
         </ion-tab-button>
+
+          <ion-tab-button *ngIf="reviewPage" (click)="closePage()">
+            <ng-icon name="featherArrowLeft" />
+          </ion-tab-button>
+          <ion-tab-button *ngIf="reviewPage" (click)="onSave()">
+            <ng-icon name="featherPlusCircle" />
+          </ion-tab-button>
+
 
       </ion-tab-bar>
     </ion-tabs>

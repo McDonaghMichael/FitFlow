@@ -33,13 +33,14 @@ import { featherHome, featherArrowLeft, featherUser, featherSettings, featherPlu
 })
 export class TabMenuComponent implements OnInit {
 
-  @Input() product: boolean = false;
-  @Input() profile: boolean = false;
+  @Input() productPage: boolean = false;
+  @Input() profilePage: boolean = false;
   @Input() homepage: boolean = false;
-  @Input() settings: boolean = false;
-  @Input() barcodeScanner: boolean = false;
-  @Input() enterManually: boolean = false;
-  @Input() productInformation: boolean = false;
+  @Input() settingsPage: boolean = false;
+  @Input() barcodeScannerPage: boolean = false;
+  @Input() enterManuallyPage: boolean = false;
+  @Input() productInformationPage: boolean = false;
+  @Input() reviewPage: boolean = false;
 
   @Output() addMenu = new EventEmitter<void>();
   @Output() save = new EventEmitter<void>();
@@ -61,8 +62,11 @@ export class TabMenuComponent implements OnInit {
     const prod = localStorage.getItem('product');
     if (prod) {
       localStorage.removeItem('product');
-
     }
+  }
+
+  closePage(): void {
+    window.history.back();
   }
 
 }

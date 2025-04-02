@@ -6,17 +6,19 @@ import {ProductHeaderComponent} from "../../../../components/product-header/prod
 import Chart from "chart.js/auto";
 import {ProductReviewComponent} from "../../../../components/product-review/product-review.component";
 import {AddProductReviewComponent} from "../../../../components/add-product-review/add-product-review.component";
+import {TabMenuComponent} from "../../../../components/tab-menu/tab-menu.component";
 
 @Component({
   selector: 'app-reviews',
   templateUrl: './reviews.page.html',
   styleUrls: ['./reviews.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, ProductHeaderComponent, ProductReviewComponent, AddProductReviewComponent]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, ProductHeaderComponent, ProductReviewComponent, AddProductReviewComponent, TabMenuComponent]
 })
 export class ReviewsPage implements OnInit {
 
   selectedProduct: number = 0;
+  showAddReview: boolean = false;
 
   name: string = '';
   brand: string = '';
@@ -58,6 +60,10 @@ export class ReviewsPage implements OnInit {
       this.brand = selectedFood.brand;
       this.rating = selectedFood.rating;
     }
+  }
+
+  toggleAddReviewMenu(): void {
+    this.showAddReview = !this.showAddReview;
   }
 
 }
