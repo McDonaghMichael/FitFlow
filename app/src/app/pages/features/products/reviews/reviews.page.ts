@@ -115,8 +115,6 @@ export class ReviewsPage implements OnInit {
       createdDate: Date.now()
     };
 
-    console.log(review);
-
     this.productService.addProductReview(review).subscribe({
       next: (response) => {
         console.log('Review submitted successfully:', response);

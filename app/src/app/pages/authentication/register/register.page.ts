@@ -13,6 +13,8 @@ import {
   IonToolbar
 } from '@ionic/angular/standalone';
 import {RouterLink} from "@angular/router";
+import {ProductService} from "../../../services/product.service";
+import {AccountService} from "../../../services/account.service";
 
 @Component({
   selector: 'app-register',
@@ -23,9 +25,33 @@ import {RouterLink} from "@angular/router";
 })
 export class RegisterPage implements OnInit {
 
-  constructor() { }
+  username: string = "";
+  email: string = "";
+  password: string = "";
+  confirmPassword: string = "";
+
+  constructor(private accountService: AccountService) { }
 
   ngOnInit() {
+  }
+
+  createAccount() {
+    const data = {
+      username: this.username,
+      email: this.email,
+      password: this.password,
+      createdDate: Date.now(),
+      updatedDate: Date.now()
+    };
+
+    this.accountService.createAccount(data).subscribe({
+      next: (response) => {
+        console.log('account submitted successfully:', response);
+      },
+      error: (err) => {
+        console.error('Error submitting account:', err);
+      }
+    });
   }
 
 }

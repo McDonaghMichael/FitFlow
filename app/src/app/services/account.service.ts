@@ -1,0 +1,24 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AccountService {
+  private apiUrl = 'http://localhost:8080';
+
+  constructor(private http: HttpClient) {}
+
+  getAccounts(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/accounts`);
+  }
+
+  getAccountById(id: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/account/id/${id}`);
+  }
+
+  createAccount(data: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/account/create`, data);
+  }
+}
