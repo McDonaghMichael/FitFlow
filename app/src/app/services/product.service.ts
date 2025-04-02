@@ -29,4 +29,8 @@ export class ProductService {
   getRating(barcodeNumber: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/review/rating/${barcodeNumber}`);
   }
+
+  getReviewsByBarcode(barcodeNumber: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/reviews/${barcodeNumber}`);
+  }
 }

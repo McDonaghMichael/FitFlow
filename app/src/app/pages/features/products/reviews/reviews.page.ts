@@ -73,7 +73,7 @@ export class ReviewsPage implements OnInit {
 
   loadReviews(): void {
 
-    this.productService.getReviews().subscribe({
+    this.productService.getReviewsByBarcode(String(this.selectedProduct)).subscribe({
       next: (data) => {
         this.reviews = data;
       },

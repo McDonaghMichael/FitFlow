@@ -114,3 +114,28 @@ func FetchRating(client *mongo.Client) http.HandlerFunc {
 		json.NewEncoder(w).Encode(avgRating)
 	}
 }
+
+func FetchReviewsByBarcode(client *mongo.Client) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		vars := mux.Vars(r)
+		barcodeNumber := vars["barcode"]
+
+		coll := client.Database(methods.GetDatabaseName()).Collection("reviews")
+
+		barCodeNumberInt, err := strconv.Atoi(barcodeNumber)
+		log.Println(barCodeNumberInt)
+
+		cursor, err := coll.Find(context.TODO(), bson.M{"barcodeNumber": barCodeNumberInt})
+		if err != nil {
+			http.Error(w, "Error fetching reviews", http.StatusInternalServerError)
+			return
+		}
+
+		var reviews []bson.M
+		if err := cursor.All(context.TODO(), &reviews); err != nil {
+			http.Error(w, "Error decoding reviews", http.StatusInternalServerError)
+			return
+		}
+		json.NewEncoder(w).Encode(reviews)
+	}
+}
