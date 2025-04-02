@@ -17,6 +17,7 @@ import {
   featherStar
 } from "@ng-icons/feather-icons";
 import {RouterLink} from "@angular/router";
+import {ProductHeaderComponent} from "../../../../components/product-header/product-header.component";
 
 
 @Component({
@@ -25,7 +26,7 @@ import {RouterLink} from "@angular/router";
   styleUrls: ['./product-information.page.scss'],
   standalone: true,
   providers: [provideIcons({ featherStar })],
-  imports: [IonContent, CommonModule, FormsModule, TabMenuComponent, IonRow, IonCol, IonCard, IonCardContent, IonGrid, NotificationComponent, IonButton, NgIcon, RouterLink]
+  imports: [IonContent, CommonModule, FormsModule, TabMenuComponent, IonRow, IonCol, IonCard, IonCardContent, IonGrid, NotificationComponent, IonButton, NgIcon, RouterLink, ProductHeaderComponent]
 })
 export class ProductInformationPage implements OnInit, AfterViewInit {
 

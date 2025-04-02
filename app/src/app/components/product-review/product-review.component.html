@@ -1,3 +1,10 @@
-<p>
-  product-review works!
-</p>
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>{{author}}</ion-card-title>
+    <ion-card-subtitle>{{review}}</ion-card-subtitle>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ng-icon *ngFor="let index of ratingArray" class="star-rating" name="featherStar"></ng-icon>
+  </ion-card-content>
+</ion-card>

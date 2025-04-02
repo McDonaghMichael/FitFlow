@@ -31,7 +31,7 @@ import { featherHome, featherArrowLeft, featherUser, featherSettings, featherPlu
     NgIcon
   ]
 })
-export class TabMenuComponent  implements OnInit {
+export class TabMenuComponent implements OnInit {
 
   @Input() product: boolean = false;
   @Input() profile: boolean = false;

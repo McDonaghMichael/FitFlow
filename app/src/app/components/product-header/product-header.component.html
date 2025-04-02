@@ -1,3 +1,5 @@
-<p>
-  product-header works!
-</p>
+<div class="header">
+  <h1>{{name}}</h1>
+  <p>{{brand}}</p>
+  <ng-icon *ngFor="let index of ratingArray" class="star-rating" name="featherStar"></ng-icon>
+</div>
