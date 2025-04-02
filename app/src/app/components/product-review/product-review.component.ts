@@ -3,6 +3,7 @@ import {IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle} f
 import {NgForOf} from "@angular/common";
 import {NgIcon, provideIcons} from "@ng-icons/core";
 import {featherStar} from "@ng-icons/feather-icons";
+import {AccountService} from "../../services/account.service";
 
 @Component({
   selector: 'app-product-review',
@@ -21,14 +22,23 @@ import {featherStar} from "@ng-icons/feather-icons";
 })
 export class ProductReviewComponent  implements OnInit {
 
-  @Input() author: string = "";
+  author: string = "";
+  @Input() accountId: string = "";
   @Input() review: string = "";
   @Input() rating: number = 0;
   ratingArray: number[] = [];
 
-  constructor() { }
+  constructor(private accountService: AccountService) { }
 
   ngOnInit() {
+    this.accountService.getAccountById(this.accountId).subscribe({
+      next: (response) => {
+       this.author = response.username;
+      },
+      error: (err) => {
+        console.error('Error:', err);
+      }
+    });
     for (let i = 0; i < this.rating; i++) {
       this.ratingArray.push(i);
     }

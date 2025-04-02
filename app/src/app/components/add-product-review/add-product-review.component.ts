@@ -14,6 +14,7 @@ import {RouterLink} from "@angular/router";
 import {featherAlignJustify, featherType, featherX} from "@ng-icons/feather-icons";
 import {FormsModule} from "@angular/forms";
 import {NgIf} from "@angular/common";
+import {AccountService} from "../../services/account.service";
 
 @Component({
   selector: 'app-add-product-review',
@@ -37,7 +38,6 @@ export class AddProductReviewComponent implements OnInit {
   @Input() showMenu: any= undefined;
   @Output() addReview = new EventEmitter<{ author: string; review: string; rating: number }>();
 
-
   review: string = "";
   rating: number = 0;
 
@@ -46,8 +46,9 @@ export class AddProductReviewComponent implements OnInit {
   ngOnInit() {}
 
   addProductReview() {
+
     if (this.review && this.rating) {
-      this.addReview.emit({ author: "michael", review: this.review, rating: this.rating });
+      this.addReview.emit({ author: String(localStorage.getItem('account_id')), review: this.review, rating: this.rating });
       this.review = "";
       this.rating = 0;
       this.closeMenu();
