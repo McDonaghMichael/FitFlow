@@ -19,6 +19,8 @@ import {
 import {RouterLink} from "@angular/router";
 import {ProductHeaderComponent} from "../../../../components/product-header/product-header.component";
 import {ProductService} from "../../../../services/product.service";
+import {LoggingService} from "../../../../services/logging.service";
+import {AccountService} from "../../../../services/account.service";
 
 
 @Component({
@@ -59,7 +61,7 @@ export class ProductInformationPage implements OnInit {
     barcodeNumber: number;
   } = {} as any;
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService, private loggingService: LoggingService, private accountService: AccountService) { }
 
   ngOnInit() {
     this.updateProduct();
@@ -145,6 +147,29 @@ export class ProductInformationPage implements OnInit {
     setTimeout(() => {
       this.productAdded = false;
     }, 2000);
+
+
+    this.accountService.getAccountById(String(localStorage.getItem('account_id'))).subscribe({
+      next: (response) => {
+
+        const data = {
+          account_id: String(localStorage.getItem('account_id')),
+          barcodeNumber: this.selectedFood.barcodeNumber,
+        };
+
+        this.loggingService.createLog(data).subscribe({
+          next: (response) => {
+            console.log('Log submitted successfully:', response);
+          },
+          error: (err) => {
+            console.error('Error submitting log:', err);
+          }
+        });
+      },
+      error: (err) => {
+        console.error('Error submitting log:', err);
+      }
+    });
   }
 
   getMicroTotalGrams(micro: number): number {

@@ -136,7 +136,10 @@ func AuthenticateAccount(client *mongo.Client) http.HandlerFunc {
 		response := map[string]interface{}{
 			"message":       "Account has been successfully authenticated",
 			"authenticated": auth,
-			"account":       account,
+			"account": map[string]interface{}{
+				"id":    result.ID,
+				"email": result.Email,
+			},
 		}
 
 		json.NewEncoder(w).Encode(response)

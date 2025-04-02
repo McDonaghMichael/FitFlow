@@ -33,6 +33,9 @@ func main() {
 
 	r := mux.NewRouter()
 	r.HandleFunc("/", handleHome)
+	r.HandleFunc("/log/create", routes.CreateLog(client)).Methods("POST")
+	r.HandleFunc("/logs", routes.FetchLogs(client)).Methods("GET")
+	r.HandleFunc("/log/id/{id}", routes.FetchLogsByAccountId(client)).Methods("GET")
 	r.HandleFunc("/account/create", routes.CreateAccount(client)).Methods("POST")
 	r.HandleFunc("/account/id/{id}", routes.FetchAccountByID(client)).Methods("GET")
 	r.HandleFunc("/account/authenticate", routes.AuthenticateAccount(client))

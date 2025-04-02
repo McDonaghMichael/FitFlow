@@ -23,6 +23,7 @@ import {AccountService} from "../../../services/account.service";
 })
 export class LoginPage implements OnInit {
 
+  id: string = "";
   email: string = "";
   password: string = "";
 
@@ -33,6 +34,7 @@ export class LoginPage implements OnInit {
 
   authenticateAccount() {
     const data = {
+      id: this.id,
       email: this.email,
       password: this.password
     };
@@ -41,8 +43,9 @@ export class LoginPage implements OnInit {
       next: (response) => {
         if(response.authenticated) {
           localStorage.setItem('authenticated', "true");
-          localStorage.setItem('account_email', this.email);
+          localStorage.setItem('account_id', response.account.id);
           this.router.navigate(['/homepage']);
+          console.log(response);
         }
       },
       error: (err) => {
