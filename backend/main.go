@@ -1,6 +1,7 @@
 package main
 
 import (
+	"backend/routes"
 	"github.com/gorilla/mux"
 	"github.com/joho/godotenv"
 	"github.com/rs/cors"
@@ -23,7 +24,7 @@ func main() {
 
 	uri := os.Getenv("MONGO_DATABASE_URL")
 
-	_, err := mongo.Connect(options.Client().ApplyURI(uri))
+	client, err := mongo.Connect(options.Client().ApplyURI(uri))
 	if err != nil {
 		log.Print("[FAILURE]", err)
 	} else {
@@ -32,9 +33,10 @@ func main() {
 
 	r := mux.NewRouter()
 	r.HandleFunc("/", handleHome)
+	r.HandleFunc("/products", routes.FetchProducts(client)).Methods("GET")
 
 	corsHandler := cors.New(cors.Options{
-		AllowedOrigins: []string{"http://localhost:3000"},
+		AllowedOrigins: []string{"http://localhost:4200"},
 		AllowedMethods: []string{"GET", "POST"},
 		AllowedHeaders: []string{"Content-Type"},
 	}).Handler(r)
