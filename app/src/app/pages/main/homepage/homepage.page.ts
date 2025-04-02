@@ -12,7 +12,7 @@ import {
   IonToolbar
 } from '@ionic/angular/standalone';
 import {TabMenuComponent} from "../../../components/tab-menu/tab-menu.component";
-import {AddMenuComponent} from "./components/add-menu/add-menu.component";
+import {AddMenuComponent} from "../../../components/add-menu/add-menu.component";
 import Chart from "chart.js/auto";
 
 @Component({

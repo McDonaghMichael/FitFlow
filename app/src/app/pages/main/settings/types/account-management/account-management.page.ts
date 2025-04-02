@@ -12,8 +12,8 @@ import {
   IonToolbar
 } from '@ionic/angular/standalone';
 import {RouterLink} from "@angular/router";
-import {SettingsTabMenuComponent} from "../../components/settings-tab-menu/settings-tab-menu.component";
-import {LogoutConfirmationComponent} from "../../components/logout-confirmation/logout-confirmation.component";
+import {SettingsTabMenuComponent} from "../../../../../components/settings-tab-menu/settings-tab-menu.component";
+import {LogoutConfirmationComponent} from "../../../../../components/logout-confirmation/logout-confirmation.component";
 import {NotificationComponent} from "../../../../../components/notification/notification.component";
 import {ErrorAlertComponent} from "../../../../../components/error-alert/error-alert.component";
 

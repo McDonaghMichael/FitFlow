@@ -12,7 +12,7 @@ import {
   IonTitle, IonToggle,
   IonToolbar
 } from '@ionic/angular/standalone';
-import {SettingsTabMenuComponent} from "../../components/settings-tab-menu/settings-tab-menu.component";
+import {SettingsTabMenuComponent} from "../../../../../components/settings-tab-menu/settings-tab-menu.component";
 import {NotificationComponent} from "../../../../../components/notification/notification.component";
 import {ErrorAlertComponent} from "../../../../../components/error-alert/error-alert.component";
 

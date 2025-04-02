@@ -14,7 +14,7 @@ import {
 import {TabMenuComponent} from "../../../components/tab-menu/tab-menu.component";
 import {AccountManagementPage} from "./types/account-management/account-management.page";
 import {RouterLink, RouterModule} from "@angular/router";
-import {LogoutConfirmationComponent} from "./components/logout-confirmation/logout-confirmation.component";
+import {LogoutConfirmationComponent} from "../../../components/logout-confirmation/logout-confirmation.component";
 
 @Component({
   selector: 'app-settings',

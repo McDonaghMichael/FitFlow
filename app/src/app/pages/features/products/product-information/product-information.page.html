@@ -1,11 +1,7 @@
 
 
 <ion-content [fullscreen]="true">
-  <div class="header">
-    <h1>{{name}}</h1>
-    <p>{{brand}}</p>
-    <ng-icon *ngFor="let index of ratingArray" class="star-rating" name="featherStar"></ng-icon>
-  </div>
+
     <canvas id="myChart" width="100" height="100"></canvas>
 
   <div *ngIf="productAdded" >
@@ -86,7 +82,7 @@
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-button>Read Reviews</ion-button>
+        <ion-button [routerLink]="['/product/reviews]">Read Reviews</ion-button>
       </ion-row>
     </ion-grid>
 
