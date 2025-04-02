@@ -33,6 +33,7 @@ func main() {
 
 	r := mux.NewRouter()
 	r.HandleFunc("/", handleHome)
+	r.HandleFunc("/account/create", routes.CreateAccount(client)).Methods("POST")
 	r.HandleFunc("/products", routes.FetchProducts(client)).Methods("GET")
 	r.HandleFunc("/product/{barcode}", routes.FindProductByBarcode(client)).Methods("GET")
 	r.HandleFunc("/reviews", routes.FetchReviews(client)).Methods("GET")
