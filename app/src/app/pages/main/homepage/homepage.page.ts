@@ -14,6 +14,10 @@ import {
 import {TabMenuComponent} from "../../../components/tab-menu/tab-menu.component";
 import {AddMenuComponent} from "../../../components/add-menu/add-menu.component";
 import Chart from "chart.js/auto";
+import {subscriptionLogsToBeFn} from "rxjs/internal/testing/TestScheduler";
+import {LoggingService} from "../../../services/logging.service";
+import {i} from "@angular/cdk/data-source.d-7cab2c9d";
+import {ProductService} from "../../../services/product.service";
 
 @Component({
   selector: 'app-homepage',
@@ -26,13 +30,45 @@ export class HomepagePage implements OnInit, AfterViewInit {
 
   @Input() addMenu = false;
 
-  constructor() { }
+  logs: {
+    accountId: string;
+    barcodeNumber: number;
+  } = {} as any;
+
+  calories: number = 0;
+  protein: number = 0;
+
+  constructor(private loggingService: LoggingService, private productService: ProductService) { }
 
   ngOnInit() {
   }
 
   ngAfterViewInit() {
     this.initChart();
+
+    this.loggingService.getLogsByAccountId(String(String(localStorage.getItem('account_id')))).subscribe({
+      next: (data: any) => {
+        this.logs = data;
+        // @ts-ignore
+        for (let i = 0; i < this.logs.length; i++) {
+          // @ts-ignore
+          this.productService.getProductById(this.logs[i].barcodeNumber).subscribe({
+            next: (data: any) => {
+              this.calories += data.calories;
+              this.protein += data.protein;
+            },
+            error: (err: any) => {
+              console.error('Error fetching products:', err);
+            }
+          });
+        }
+      },
+      error: (err) => {
+        console.error('Error fetching products:', err);
+      }
+    });
+
+
   }
 
   initChart(): void {
