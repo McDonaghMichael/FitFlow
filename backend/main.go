@@ -34,6 +34,7 @@ func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/", handleHome)
 	r.HandleFunc("/products", routes.FetchProducts(client)).Methods("GET")
+	r.HandleFunc("/product/{barcode}", routes.FindProductByBarcode(client)).Methods("GET")
 
 	corsHandler := cors.New(cors.Options{
 		AllowedOrigins: []string{"http://localhost:4200"},
