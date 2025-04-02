@@ -45,6 +45,7 @@ export class ReviewsPage implements OnInit {
   ngOnInit() {
     this.updateProduct();
     this.loadReviews();
+    this.loadRating();
     for (let i = 0; i < this.rating; i++) {
       this.ratingArray.push(i);
     }
@@ -83,6 +84,23 @@ export class ReviewsPage implements OnInit {
     });
 
   }
+
+  loadRating(): void {
+
+    this.productService.getRating(String(this.selectedProduct)).subscribe({
+      next: (data: any) => {
+        this.rating = data;
+        for (let i = 0; i < this.rating; i++) {
+          this.ratingArray.push(i);
+        }
+      },
+      error: (err) => {
+        console.error('Error fetching products:', err);
+      }
+    });
+
+  }
+
 
   toggleAddReviewMenu(): void {
     this.showAddReview = !this.showAddReview;
