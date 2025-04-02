@@ -37,6 +37,7 @@ func main() {
 	r.HandleFunc("/product/{barcode}", routes.FindProductByBarcode(client)).Methods("GET")
 	r.HandleFunc("/reviews", routes.FetchReviews(client)).Methods("GET")
 	r.HandleFunc("/review/create", routes.CreateReview(client)).Methods("POST")
+	r.HandleFunc("/review/rating/{barcode}", routes.FetchRating(client)).Methods("GET")
 
 	corsHandler := cors.New(cors.Options{
 		AllowedOrigins: []string{"http://localhost:4200"},

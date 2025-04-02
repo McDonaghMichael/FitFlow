@@ -4,10 +4,12 @@ import (
 	"backend/methods"
 	"context"
 	"encoding/json"
+	"github.com/gorilla/mux"
 	"go.mongodb.org/mongo-driver/v2/bson"
 	"go.mongodb.org/mongo-driver/v2/mongo"
 	"log"
 	"net/http"
+	"strconv"
 )
 
 func CreateReview(client *mongo.Client) http.HandlerFunc {
@@ -65,5 +67,50 @@ func FetchReviews(client *mongo.Client) http.HandlerFunc {
 		}
 
 		json.NewEncoder(w).Encode(results)
+	}
+}
+
+func FetchRating(client *mongo.Client) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		vars := mux.Vars(r)
+		barcodeNumber := vars["barcode"]
+
+		coll := client.Database(methods.GetDatabaseName()).Collection("reviews")
+
+		barCodeNumberInt, err := strconv.Atoi(barcodeNumber)
+		log.Println(barCodeNumberInt)
+
+		cursor, err := coll.Find(context.TODO(), bson.M{"barcodeNumber": barCodeNumberInt})
+		if err != nil {
+			http.Error(w, "Error fetching reviews", http.StatusInternalServerError)
+			return
+		}
+
+		var reviews []bson.M
+		if err := cursor.All(context.TODO(), &reviews); err != nil {
+			http.Error(w, "Error decoding reviews", http.StatusInternalServerError)
+			return
+		}
+
+		var ratings int
+
+		for i := 0; i < len(reviews); i++ {
+			log.Println(reviews[i]["rating"])
+
+			ratingValue, ok := reviews[i]["rating"].(float64)
+			if ok {
+				ratings += int(ratingValue)
+			} else {
+				log.Println("Error: Rating value is not of type float64")
+			}
+		}
+
+		var avgRating int
+		if len(reviews) > 0 {
+			avgRating = ratings / len(reviews)
+		} else {
+			avgRating = 0
+		}
+		json.NewEncoder(w).Encode(avgRating)
 	}
 }
