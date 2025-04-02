@@ -1,3 +1,18 @@
-<p>
-  add-product-review works!
-</p>
+<ion-card class="menu-container" *ngIf="showMenu">
+  <ion-card-content>
+    <div class="input-container">
+      <ion-textarea [(ngModel)]="review" fill="outline" placeholder="Enter Text..." required></ion-textarea>
+        <ion-select [(ngModel)]="rating" placeholder="Rating" required>
+          <ion-select-option value="1">1 Star</ion-select-option>
+          <ion-select-option value="2">2 Star</ion-select-option>
+          <ion-select-option value="3">3 Star</ion-select-option>
+          <ion-select-option value="4">4 Star</ion-select-option>
+          <ion-select-option value="5">5 Star</ion-select-option>
+        </ion-select>
+    </div>
+    <div class="button-container">
+      <ion-button (click)="addProductReview()">Submit Review</ion-button>
+      <ion-button (click)="closeMenu()"><ng-icon name="featherX"></ng-icon></ion-button>
+    </div>
+  </ion-card-content>
+</ion-card>
