@@ -63,10 +63,7 @@ export class ProductInformationPage implements OnInit {
 
   ngOnInit() {
     this.updateProduct();
-
-    for (let i = 0; i < this.rating; i++) {
-      this.ratingArray.push(i);
-    }
+    this.loadRating();
   }
 
   initChart(): void {
@@ -118,6 +115,22 @@ export class ProductInformationPage implements OnInit {
           this.calories = this.selectedFood.calories;
           this.grams = this.selectedFood.grams;
           this.initChart();
+        }
+      },
+      error: (err) => {
+        console.error('Error fetching products:', err);
+      }
+    });
+
+  }
+
+  loadRating(): void {
+
+    this.productService.getRating(String(this.selectedProduct)).subscribe({
+      next: (data: any) => {
+        this.rating = data;
+        for (let i = 0; i < this.rating; i++) {
+          this.ratingArray.push(i);
         }
       },
       error: (err) => {
