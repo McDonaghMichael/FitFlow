@@ -15,7 +15,6 @@ import (
 
 func CreateAccount(client *mongo.Client) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		w.WriteHeader(http.StatusCreated)
 		w.Header().Set("Content-Type", "application/json")
 
 		var account models.Account
@@ -28,6 +27,28 @@ func CreateAccount(client *mongo.Client) http.HandlerFunc {
 		}
 
 		collection := client.Database(methods.GetDatabaseName()).Collection("accounts")
+
+		var existing models.Account
+
+		filter := bson.M{"username": account.Username}
+		err = collection.FindOne(context.TODO(), filter).Decode(&existing)
+
+		filter2 := bson.M{"email": account.Email}
+		err2 := collection.FindOne(context.TODO(), filter2).Decode(&existing)
+
+		if err == nil {
+			http.Error(w, "Username is taken", http.StatusConflict)
+			log.Println("username conflict:", account.Username)
+			return
+		} else if err2 == nil {
+			http.Error(w, "Email is taken", http.StatusConflict)
+			log.Println("Email conflict:", account.Email)
+			return
+		} else if err != mongo.ErrNoDocuments {
+			http.Error(w, "Database error", http.StatusInternalServerError)
+			log.Println("MongoDB FindOne error:", err)
+			return
+		}
 
 		hashedPassword, err := methods.HashPassword(account.Password)
 		result, err := collection.InsertOne(context.TODO(), bson.M{
@@ -55,7 +76,6 @@ func CreateAccount(client *mongo.Client) http.HandlerFunc {
 
 func FetchAccounts(client *mongo.Client) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		w.WriteHeader(http.StatusOK)
 		w.Header().Set("Content-Type", "application/json")
 
 		collection := client.Database(methods.GetDatabaseName()).Collection("accounts")
@@ -122,7 +142,7 @@ func AuthenticateAccount(client *mongo.Client) http.HandlerFunc {
 		error := collection.FindOne(context.TODO(), filter).Decode(&result)
 
 		if error != nil {
-			http.Error(w, error.Error(), http.StatusNotFound)
+			http.Error(w, "Account not found", http.StatusNotFound)
 			log.Println(error)
 			return
 		}
