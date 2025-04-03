@@ -45,11 +45,10 @@ export class LoginPage implements OnInit {
           localStorage.setItem('authenticated', "true");
           localStorage.setItem('account_id', response.account.id);
           this.router.navigate(['/homepage']);
-          console.log(response);
         }
       },
       error: (err) => {
-        console.error('Error submitting account:', err);
+        console.error('Error authenticating: ', err);
       }
     });
   }

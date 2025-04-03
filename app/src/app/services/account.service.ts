@@ -25,4 +25,18 @@ export class AccountService {
   authenticateAccount(data: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/account/authenticate`, data);
   }
+
+  authAccount(response: any) : void {
+    localStorage.setItem('authenticated', "true");
+    localStorage.setItem('account_id', response.account.id);
+  }
+
+  isAuth() : boolean {
+    if(localStorage.getItem('authenticated') == "true"){
+      return true;
+    }
+
+    return false;
+  }
+
 }
