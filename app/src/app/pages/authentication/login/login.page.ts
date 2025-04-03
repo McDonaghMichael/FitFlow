@@ -33,17 +33,14 @@ export class LoginPage implements OnInit {
   }
 
   authenticateAccount() {
-    const data = {
+    this.accountService.authenticateAccount({
       id: this.id,
       email: this.email,
       password: this.password
-    };
-
-    this.accountService.authenticateAccount(data).subscribe({
+    }).subscribe({
       next: (response) => {
         if(response.authenticated) {
-          localStorage.setItem('authenticated', "true");
-          localStorage.setItem('account_id', response.account.id);
+          this.accountService.authAccount(response);
           this.router.navigate(['/homepage']);
         }
       },
