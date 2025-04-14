@@ -9,14 +9,14 @@ type Account struct {
 	Password           string        `json:"password"`
 	ProfileImage       string        `json:"profile_image"`
 	ProfileDescription string        `json:"profile_description"`
-	DarkMode           *bool         `json:"dark_mode,omitempty"`
-	Height             int           `json:"height"`
-	Weight             int           `json:"weight"`
-	Gender             string        `json:"gender"`
-	DailyProteinIntake int           `json:"daily_protein_intake"`
-	DailyStepGoal      int           `json:"daily_step_goal"`
-	CalorieIntake      int           `json:"calorie_intake"`
-	WaterReminder      bool          `json:"water_reminder"`
+	DarkMode           *bool         `json:"DarkMode,omitempty" bson:"dark_mode,omitempty"`
+	Height             *float64      `json:"height,omitempty" bson:"height,omitempty"`
+	Weight             *float64      `json:"weight,omitempty" bson:"weight,omitempty"`
+	Gender             *float64      `json:"gender,omitempty" bson:"gender,omitempty"`
+	DailyProteinIntake *int          `json:"DailyProteinIntake,omitempty" bson:"daily_protein_intake,omitempty"`
+	DailyStepGoal      *int          `json:"DailyStepGoal,omitempty" bson:"daily_step_goal,omitempty"`
+	CalorieIntake      *int          `json:"CalorieIntake,omitempty" bson:"calorie_intake,omitempty"`
+	WaterReminder      *bool         `json:"WaterReminder,omitempty" bson:"water_reminder,omitempty"`
 	CreatedDate        int           `json:"created_date"`
 	UpdatedDate        int           `json:"updated_date"`
 }

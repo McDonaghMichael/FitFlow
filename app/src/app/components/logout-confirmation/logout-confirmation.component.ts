@@ -7,6 +7,8 @@ import {
   IonCardSubtitle,
   IonCardTitle
 } from "@ionic/angular/standalone";
+import {AccountService} from "../../services/account.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-logout-confirmation',
@@ -25,8 +27,14 @@ export class LogoutConfirmationComponent implements OnInit {
 
   @Input() onCancel!: () => void;
 
-  constructor() { }
+  constructor(private accountService: AccountService, private router: Router) { }
 
   ngOnInit() {}
+
+  logOut () : void  {
+    this.accountService.deauthAccount();
+    this.router.navigate(['/authentication/landing']);
+
+  }
 
 }

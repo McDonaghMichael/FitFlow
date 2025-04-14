@@ -72,6 +72,8 @@ export class HomepagePage implements OnInit, AfterViewInit {
     this.loggingService.getLogsByAccountId(String(localStorage.getItem('account_id'))).subscribe({
       next: (data: any) => {
         this.logs = data;
+
+        console.log("acc", localStorage.getItem('account_id'))
         // @ts-ignore
         for (let i = 0; i < this.logs.length; i++) {
           // @ts-ignore

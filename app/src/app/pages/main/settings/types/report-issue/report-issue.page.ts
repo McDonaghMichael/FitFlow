@@ -15,6 +15,7 @@ import {
 import {SettingsTabMenuComponent} from "../../../../../components/settings-tab-menu/settings-tab-menu.component";
 import {NotificationComponent} from "../../../../../components/notification/notification.component";
 import {ErrorAlertComponent} from "../../../../../components/error-alert/error-alert.component";
+import {AccountService} from "../../../../../services/account.service";
 
 @Component({
   selector: 'app-report-issue',
@@ -31,7 +32,7 @@ export class ReportIssuePage implements OnInit {
   error: boolean = false;
   errorMessage: string = "An error has occurred!";
 
-  constructor() { }
+  constructor(private accountService: AccountService) { }
 
   ngOnInit() {
   }

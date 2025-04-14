@@ -31,6 +31,11 @@ export class AccountService {
     localStorage.setItem('account_id', response.account.id);
   }
 
+  deauthAccount(): void {
+    localStorage.removeItem('authenticated');
+    localStorage.removeItem('account_id',);
+  }
+
   isAuth(): boolean {
     return localStorage.getItem('authenticated') === 'true';
   }

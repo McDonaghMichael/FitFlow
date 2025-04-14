@@ -32,10 +32,10 @@
 
             <ion-item>
               <ion-label>Gender</ion-label>
-                <ion-select [(ngModel)]="gender" slot="end" placeholder="Unselected">
-                  <ion-select-option value="male">Male</ion-select-option>
-                  <ion-select-option value="female">Female</ion-select-option>
-                  <ion-select-option value="n/a">Prefer Not To Say</ion-select-option>
+                <ion-select [(ngModel)]="gender" [value]="gender" slot="end" placeholder="Unselected">
+                  <ion-select-option value="0">Male</ion-select-option>
+                  <ion-select-option value="1">Female</ion-select-option>
+                  <ion-select-option value="2">Prefer Not To Say</ion-select-option>
                 </ion-select>
             </ion-item>
           </ion-card-content>

@@ -47,6 +47,8 @@ export class AccountManagementPage implements OnInit {
         this.username = response.username;
         this.email = response.email;
         console.log(response);
+        console.log(String(localStorage.getItem('account_id')));
+
       },
       error: (err) => {
         this.error = true;

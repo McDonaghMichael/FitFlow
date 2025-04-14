@@ -14,6 +14,7 @@ import {
 } from '@ionic/angular/standalone';
 import {SettingsTabMenuComponent} from "../../../../../components/settings-tab-menu/settings-tab-menu.component";
 import {NotificationComponent} from "../../../../../components/notification/notification.component";
+import {AccountService} from "../../../../../services/account.service";
 
 @Component({
   selector: 'app-notifications',
@@ -26,15 +27,26 @@ export class NotificationsPage implements OnInit {
 
   settingsSaved: boolean = false;
 
+  error: boolean = false;
+  errorMessage: string = "An error has occurred!";
+
+
   isWaterReminder = false;
 
-  constructor() { }
+  constructor(private accountService: AccountService) { }
 
   ngOnInit() {
-    const waterReminder = localStorage.getItem('waterReminder');
-    if (waterReminder) {
-      this.isWaterReminder = waterReminder === 'true';
-    }
+    this.accountService.getAccountById(String(localStorage.getItem('account_id'))).subscribe({
+      next: async (response) => {
+        this.isWaterReminder = response.water_reminder || false;
+      },
+      error: (err) => {
+        this.error = true;
+        setTimeout(() => {
+          this.error = false;
+        }, 3000);
+      }
+    });
   }
 
   toggleWaterReminder() {
@@ -43,7 +55,26 @@ export class NotificationsPage implements OnInit {
 
   saveSettings() {
     this.settingsSaved = true;
-    localStorage.setItem('waterReminder', this.isWaterReminder.toString());
+    this.accountService.updateAccountData({
+      ID: localStorage.getItem('account_id'),
+      WaterReminder: this.isWaterReminder,
+      UpdatedDate: Date.now(),
+    }).subscribe({
+      next: async (response) => {
+        this.settingsSaved = true;
+        setTimeout(() => {
+          this.settingsSaved = false;
+        }, 3000);
+      },
+      error: (err) => {
+        this.error = true;
+        this.errorMessage = err.error.text;
+
+        setTimeout(() => {
+          this.error = false;
+        }, 3000);
+      }
+    });
     setTimeout(() => {
       this.settingsSaved = false;
     }, 3000);

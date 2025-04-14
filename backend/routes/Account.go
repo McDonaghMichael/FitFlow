@@ -183,8 +183,47 @@ func EditAccount(client *mongo.Client) http.HandlerFunc {
 		filter := bson.M{"_id": account.ID}
 
 		updateFields := bson.M{
-			"email":        account.Email,
 			"updated_date": account.UpdatedDate,
+		}
+
+		if account.Username != "" {
+			updateFields["username"] = account.Username
+		}
+
+		if account.Email != "" {
+			updateFields["email"] = account.Email
+		}
+
+		if account.Height != nil {
+			updateFields["height"] = *account.Height
+		}
+
+		if account.Weight != nil {
+			updateFields["weight"] = *account.Weight
+		}
+
+		if account.Gender != nil {
+			updateFields["gender"] = *account.Gender
+		}
+
+		if account.DarkMode != nil {
+			updateFields["dark_mode"] = *account.DarkMode
+		}
+
+		if account.WaterReminder != nil {
+			updateFields["water_reminder"] = *account.WaterReminder
+		}
+
+		if account.DailyProteinIntake != nil {
+			updateFields["daily_protein_intake"] = *account.DailyProteinIntake
+		}
+
+		if account.DailyStepGoal != nil {
+			updateFields["daily_step_goal"] = *account.DailyStepGoal
+		}
+
+		if account.CalorieIntake != nil {
+			updateFields["calorie_intake"] = *account.CalorieIntake
 		}
 
 		if account.Password != "" {
@@ -195,8 +234,6 @@ func EditAccount(client *mongo.Client) http.HandlerFunc {
 				return
 			}
 			updateFields["password"] = hashedPassword
-		} else if account.Username != "" {
-			updateFields["username"] = account.Username
 		}
 
 		update := bson.M{"$set": updateFields}
@@ -210,7 +247,7 @@ func EditAccount(client *mongo.Client) http.HandlerFunc {
 
 		if result.ModifiedCount == 0 {
 			http.Error(w, "No account updated", http.StatusNotFound)
-			log.Println("No account updated for:", account.Username)
+			log.Println("No account updated for:", account.ID)
 			return
 		}
 

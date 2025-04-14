@@ -12,6 +12,7 @@ import {
 import {SettingsTabMenuComponent} from "../../../../../components/settings-tab-menu/settings-tab-menu.component";
 import {NotificationComponent} from "../../../../../components/notification/notification.component";
 import {ErrorAlertComponent} from "../../../../../components/error-alert/error-alert.component";
+import {AccountService} from "../../../../../services/account.service";
 
 @Component({
   selector: 'app-goals',
@@ -31,9 +32,23 @@ export class GoalsPage implements OnInit {
   error: boolean = false;
   errorMessage: string = "An error has occurred!";
 
-  constructor() { }
+  constructor(private accountService: AccountService) { }
 
   ngOnInit() {
+    this.accountService.getAccountById(String(localStorage.getItem('account_id'))).subscribe({
+      next: async (response) => {
+        this.proteinIntake = response.daily_protein_intake;
+        this.stepGoal = response.daily_step_goal;
+        this.calorieIntake = response.calorie_intake;
+        console.log(response);
+      },
+      error: (err) => {
+        this.error = true;
+        setTimeout(() => {
+          this.error = false;
+        }, 3000);
+      }
+    });
   }
 
   saveSettings() {
@@ -73,7 +88,28 @@ export class GoalsPage implements OnInit {
   }
 
   saveData() : void {
+    this.accountService.updateAccountData({
+      ID: localStorage.getItem('account_id'),
+      DailyProteinIntake: Number(this.proteinIntake),
+      DailyStepGoal: Number(this.stepGoal),
+      CalorieIntake: Number(this.calorieIntake),
+      UpdatedDate: Date.now(),
+    }).subscribe({
+      next: async (response) => {
+        this.settingsSaved = true;
+        setTimeout(() => {
+          this.settingsSaved = false;
+        }, 3000);
+      },
+      error: (err) => {
+        this.error = true;
+        this.errorMessage = err.error.text;
 
+        setTimeout(() => {
+          this.error = false;
+        }, 3000);
+      }
+    });
   }
 
 }
