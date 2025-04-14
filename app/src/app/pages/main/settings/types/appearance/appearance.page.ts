@@ -15,6 +15,7 @@ import {
 } from '@ionic/angular/standalone';
 import {SettingsTabMenuComponent} from "../../../../../components/settings-tab-menu/settings-tab-menu.component";
 import {NotificationComponent} from "../../../../../components/notification/notification.component";
+import {AccountService} from "../../../../../services/account.service";
 
 @Component({
   selector: 'app-appearance',
@@ -27,15 +28,25 @@ export class AppearancePage implements OnInit {
 
   settingsSaved: boolean = false;
 
+  error: boolean = false;
+  errorMessage: string = "An error has occurred!";
+
   isDarkMode = false;
 
-  constructor() { }
+  constructor(private accountService: AccountService) { }
 
   ngOnInit() {
-    const savedTheme = localStorage.getItem('darkMode');
-    if (savedTheme) {
-      this.isDarkMode = savedTheme === 'true';
-    }
+    this.accountService.getAccountById(String(localStorage.getItem('account_id'))).subscribe({
+      next: async (response) => {
+        this.isDarkMode = response.dark_mode || false;
+      },
+      error: (err) => {
+        this.error = true;
+        setTimeout(() => {
+          this.error = false;
+        }, 3000);
+      }
+    });
     this.applyTheme()
 
   }
@@ -51,7 +62,26 @@ export class AppearancePage implements OnInit {
 
   saveSettings() {
     this.settingsSaved = true;
-    localStorage.setItem('darkMode', this.isDarkMode.toString());
+    this.accountService.updateAccountData({
+      ID: localStorage.getItem('account_id'),
+      DarkMode: this.isDarkMode,
+      UpdatedDate: Date.now(),
+    }).subscribe({
+      next: async (response) => {
+        this.settingsSaved = true;
+        setTimeout(() => {
+          this.settingsSaved = false;
+        }, 3000);
+      },
+      error: (err) => {
+        this.error = true;
+        this.errorMessage = err.error.text;
+
+        setTimeout(() => {
+          this.error = false;
+        }, 3000);
+      }
+    });
     setTimeout(() => {
       this.settingsSaved = false;
     }, 3000);

@@ -26,17 +26,17 @@ export class AccountService {
     return this.http.post<any>(`${this.apiUrl}/account/authenticate`, data);
   }
 
-  authAccount(response: any) : void {
-    localStorage.setItem('authenticated', "true");
+  authAccount(response: any): void {
+    localStorage.setItem('authenticated', 'true');
     localStorage.setItem('account_id', response.account.id);
   }
 
-  isAuth() : boolean {
-    if(localStorage.getItem('authenticated') == "true"){
-      return true;
-    }
-
-    return false;
+  isAuth(): boolean {
+    return localStorage.getItem('authenticated') === 'true';
   }
 
+  updateAccountData(data: any): Observable<any> {
+    console.log(data);
+    return this.http.post<any>(`${this.apiUrl}/account/update`, data);
+  }
 }

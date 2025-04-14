@@ -165,3 +165,56 @@ func AuthenticateAccount(client *mongo.Client) http.HandlerFunc {
 		json.NewEncoder(w).Encode(response)
 	}
 }
+
+func EditAccount(client *mongo.Client) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+
+		collection := client.Database(methods.GetDatabaseName()).Collection("accounts")
+
+		var account models.Account
+		err := json.NewDecoder(r.Body).Decode(&account)
+		if err != nil {
+			http.Error(w, "Invalid JSON request", http.StatusBadRequest)
+			log.Println("Error decoding JSON:", err)
+			return
+		}
+
+		filter := bson.M{"_id": account.ID}
+
+		updateFields := bson.M{
+			"email":        account.Email,
+			"updated_date": account.UpdatedDate,
+		}
+
+		if account.Password != "" {
+			hashedPassword, err := methods.HashPassword(account.Password)
+			if err != nil {
+				http.Error(w, "Error hashing password", http.StatusInternalServerError)
+				log.Println("Error hashing password:", err)
+				return
+			}
+			updateFields["password"] = hashedPassword
+		} else if account.Username != "" {
+			updateFields["username"] = account.Username
+		}
+
+		update := bson.M{"$set": updateFields}
+
+		result, err := collection.UpdateOne(context.TODO(), filter, update)
+		if err != nil {
+			http.Error(w, "Failed to update account", http.StatusInternalServerError)
+			log.Println("MongoDB Update Error:", err)
+			return
+		}
+
+		if result.ModifiedCount == 0 {
+			http.Error(w, "No account updated", http.StatusNotFound)
+			log.Println("No account updated for:", account.Username)
+			return
+		}
+
+		response := map[string]string{"message": "Account updated successfully"}
+		json.NewEncoder(w).Encode(response)
+	}
+}

@@ -16,6 +16,7 @@ import {SettingsTabMenuComponent} from "../../../../../components/settings-tab-m
 import {LogoutConfirmationComponent} from "../../../../../components/logout-confirmation/logout-confirmation.component";
 import {NotificationComponent} from "../../../../../components/notification/notification.component";
 import {ErrorAlertComponent} from "../../../../../components/error-alert/error-alert.component";
+import {AccountService} from "../../../../../services/account.service";
 
 @Component({
   selector: 'app-account-management',
@@ -30,25 +31,57 @@ export class AccountManagementPage implements OnInit {
   error: boolean = false;
   errorMessage: string = "An error has occurred!";
 
+  username: string = "";
   email: string = "";
   password: string = "";
   newPassword: string = "";
   confirmNewPassword: string = "";
 
-  constructor() { }
+  constructor(private accountService: AccountService) {
+  }
 
   ngOnInit() {
+
+    this.accountService.getAccountById(String(localStorage.getItem('account_id'))).subscribe({
+      next: async (response) => {
+        this.username = response.username;
+        this.email = response.email;
+        console.log(response);
+      },
+      error: (err) => {
+        this.error = true;
+        setTimeout(() => {
+          this.error = false;
+        }, 3000);
+      }
+    });
   }
 
   saveSettings() : void {
     if(!this.runValidation()) return;
 
-    this.settingsSaved = true;
-    setTimeout(() => {
-      this.settingsSaved = false;
-    }, 3000);
+    this.accountService.updateAccountData({
+      ID: localStorage.getItem('account_id'),
+      Username: this.username,
+      Email: this.email,
+      Password: this.password,
+      UpdatedDate: Date.now(),
+    }).subscribe({
+      next: async (response) => {
+        this.settingsSaved = true;
+        setTimeout(() => {
+          this.settingsSaved = false;
+        }, 3000);
+      },
+      error: (err) => {
+        this.error = true;
+        this.errorMessage = err.error.text;
 
-    this.saveData();
+        setTimeout(() => {
+          this.error = false;
+        }, 3000);
+      }
+    });
   }
 
   runValidation() : boolean {
@@ -59,6 +92,11 @@ export class AccountManagementPage implements OnInit {
       this.error = false;
     }, 3000);
 
+    if(!this.password && this.newPassword && this.confirmNewPassword) {
+      this.error = true;
+      this.errorMessage = "Please enter old password to confirm update";
+      return false;
+    }
     if(this.newPassword !== this.confirmNewPassword) {
       this.error = true;
       this.errorMessage = "Passwords do not match";
@@ -66,13 +104,6 @@ export class AccountManagementPage implements OnInit {
     }
 
     return true;
-  }
-
-  saveData() : void {
-    console.log(this.email);
-    console.log(this.password);
-    console.log(this.newPassword);
-    console.log(this.confirmNewPassword);
   }
 
 }
