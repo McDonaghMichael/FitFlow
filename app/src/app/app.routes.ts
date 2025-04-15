@@ -67,7 +67,7 @@ export const routes: Routes = [
   },
   {
     path: 'product/barcode-scanner',
-    canActivate: [AuthGuard],
+
     loadComponent: () => import('./pages/features/products/barcode-scanner/barcode-scanner.page').then(m => m.BarcodeScannerPage)
   },
   {
