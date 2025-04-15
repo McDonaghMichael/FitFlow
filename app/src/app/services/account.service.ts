@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AccountService {
-  private apiUrl = 'http://localhost:8080';
+  private apiUrl = 'https://192.168.1.31:8080';
 
   constructor(private http: HttpClient) {}
 

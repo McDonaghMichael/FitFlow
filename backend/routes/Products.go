@@ -40,6 +40,8 @@ func FindProductByBarcode(client *mongo.Client) http.HandlerFunc {
 
 		var result bson.M
 
+		log.Println(barcodeNumber)
+
 		b, _ := strconv.Atoi(barcodeNumber)
 		filter := bson.D{{"barcodeNumber", b}}
 
