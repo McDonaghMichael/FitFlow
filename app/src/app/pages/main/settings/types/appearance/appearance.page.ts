@@ -39,6 +39,7 @@ export class AppearancePage implements OnInit {
     this.accountService.getAccountById(String(localStorage.getItem('account_id'))).subscribe({
       next: async (response) => {
         this.isDarkMode = response.dark_mode || false;
+        this.applyTheme()
       },
       error: (err) => {
         this.error = true;
@@ -47,7 +48,7 @@ export class AppearancePage implements OnInit {
         }, 3000);
       }
     });
-    this.applyTheme()
+
 
   }
 

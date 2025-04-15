@@ -32,6 +32,7 @@
     "@ng-icons/core": "^31.2.0",
     "@ng-icons/feather-icons": "^31.2.0",
     "@ng-icons/heroicons": "^31.2.0",
+    "@zxing/ngx-scanner": "^19.0.0",
     "bcrypt": "^5.1.1",
     "chart.js": "^4.4.8",
     "ionicons": "^7.4.0",
