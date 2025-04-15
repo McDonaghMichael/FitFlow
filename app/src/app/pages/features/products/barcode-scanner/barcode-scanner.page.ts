@@ -4,14 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import {TabMenuComponent} from "../../../../components/tab-menu/tab-menu.component";
 import {ZXingScannerModule} from "@zxing/ngx-scanner";
-import {BarcodeScannerLivestreamComponent, BarcodeScannerLivestreamModule} from "ngx-barcode-scanner";
 
+import { BarcodeFormat } from '@zxing/library';
 @Component({
   selector: 'app-barcode-scanner',
   templateUrl: './barcode-scanner.page.html',
   styleUrls: ['./barcode-scanner.page.scss'],
   standalone: true,
-  imports: [IonContent, ZXingScannerModule, CommonModule, FormsModule, TabMenuComponent, BarcodeScannerLivestreamModule]
+  imports: [IonContent, ZXingScannerModule, CommonModule, FormsModule, TabMenuComponent]
 })
 export class BarcodeScannerPage implements OnInit {
 
@@ -20,21 +20,34 @@ export class BarcodeScannerPage implements OnInit {
   ngOnInit() {
   }
 
-  @ViewChild(BarcodeScannerLivestreamComponent)
-  barcodeScanner: BarcodeScannerLivestreamComponent | any;
+  allowedFormats = [BarcodeFormat.QR_CODE, BarcodeFormat.DATA_MATRIX, BarcodeFormat.AZTEC, BarcodeFormat.EAN_13, BarcodeFormat.CODE_128];
+  scannedResult: string | null = null;
+  hasDevices = false;
+  availableDevices: MediaDeviceInfo[] = [];
+  selectedDevice: MediaDeviceInfo | undefined;
 
-  barcodeValue: any;
-
-  ngAfterViewInit() {
-    this.barcodeScanner.start();
+  onCodeResult(result: string) {
+    this.scannedResult = result;
   }
 
-  onValueChanges(result: { codeResult: { code: any; }; }) {
-    this.barcodeValue = result.codeResult.code;
+  onDeviceSelectChange(event: Event) {
+    const target = event.target as HTMLSelectElement;
+    this.selectedDevice = this.availableDevices.find(device => device.deviceId === target.value);
   }
 
-  onStarted(started: any) {
-    console.log(started);
+  onHasDevices(hasDevices: boolean) {
+    this.hasDevices = hasDevices;
+  }
+
+  onDevicesFound(devices: MediaDeviceInfo[]) {
+    this.availableDevices = devices;
+    if (devices.length > 0) {
+      this.selectedDevice = devices[0];
+    }
+  }
+
+  onError(error: any) {
+    console.error('Barcode scanning error:', error);
   }
 
 }

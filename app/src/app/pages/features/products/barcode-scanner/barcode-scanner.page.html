@@ -1,11 +1,26 @@
 <ion-content [fullscreen]="true">
-  <barcode-scanner-livestream
-    type="code_128"
-    (valueChanges)="onValueChanges($event)"
-    (started)="onStarted($event)"
-  ></barcode-scanner-livestream>
-  <div [hidden]="!barcodeValue">
-    {{ barcodeValue }}
+  <div *ngIf="hasDevices">
+    <label for="deviceSelect">Choose Camera:</label>
+    <select id="deviceSelect" (change)="onDeviceSelectChange($event)">
+      <option *ngFor="let device of availableDevices" [value]="device.deviceId">
+        {{ device.label || 'Unknown Camera' }}
+      </option>
+    </select>
   </div>
+  <zxing-scanner
+    [formats]="allowedFormats"
+    [autostart]="true"
+    [device]="selectedDevice"
+    (scanSuccess)="onCodeResult($event)"
+    (camerasFound)="onDevicesFound($event)"
+    (camerasNotFound)="onHasDevices(false)"
+    (scanError)="onError($event)"
+  ></zxing-scanner>
+
+
+  <p *ngIf="scannedResult">
+    <strong>Scanned Code:</strong> {{ scannedResult }}
+  </p>
+
   <tab-menu [barcodeScannerPage]="true"></tab-menu>
 </ion-content>
