@@ -49,7 +49,7 @@ func main() {
 	r.HandleFunc("/review/rating/{barcode}", routes.FetchRating(client)).Methods("GET")
 
 	corsHandler := cors.New(cors.Options{
-		AllowedOrigins:   []string{"http://185.81.166.93:4200"},
+		AllowedOrigins:   []string{"http://185.81.166.93:4200", "http://localhost:4200"},
 		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
 		AllowedHeaders:   []string{"Content-Type", "Authorization"},
 		AllowCredentials: true,
