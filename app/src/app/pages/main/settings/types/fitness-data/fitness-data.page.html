@@ -21,18 +21,15 @@
         <ion-card>
           <ion-card-content>
             <ion-item>
-              <ion-label>Height</ion-label>
-              <ion-input [(ngModel)]="height" slot="end" [clearOnEdit]="true" placeholder="187cm" required="true"></ion-input>
+              <ion-input label="Height" [(ngModel)]="height" slot="start" [clearOnEdit]="true" placeholder="187cm" required="true"></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-label>Weight</ion-label>
-              <ion-input [(ngModel)]="weight" slot="end" [clearOnEdit]="true" placeholder="99kg" required="true"></ion-input>
+              <ion-input label="Weight" [(ngModel)]="weight" slot="start" [clearOnEdit]="true" placeholder="99kg" required="true"></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-label>Gender</ion-label>
-                <ion-select [(ngModel)]="gender" [value]="gender" slot="end" placeholder="Unselected">
+                <ion-select label="Gender" [(ngModel)]="gender" [value]="gender" slot="start" placeholder="Unselected">
                   <ion-select-option value="0">Male</ion-select-option>
                   <ion-select-option value="1">Female</ion-select-option>
                   <ion-select-option value="2">Prefer Not To Say</ion-select-option>
