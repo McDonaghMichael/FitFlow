@@ -118,10 +118,13 @@ export class ReviewsPage implements OnInit {
     this.productService.addProductReview(review).subscribe({
       next: (response) => {
         console.log('Review submitted successfully:', response);
+        window.location.reload();
       },
       error: (err) => {
         console.error('Error submitting review:', err);
       }
+
+
     });
   }
 

@@ -16,18 +16,22 @@ import {Router, RouterLink} from "@angular/router";
 import {ProductService} from "../../../services/product.service";
 import {AccountService} from "../../../services/account.service";
 import {ErrorAlertComponent} from "../../../components/error-alert/error-alert.component";
+import {AlertComponent} from "../../../components/alert/alert.component";
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonList, IonItem, IonInput, IonCol, IonGrid, IonRow, IonButton, IonCheckbox, RouterLink, ErrorAlertComponent]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonList, IonItem, IonInput, IonCol, IonGrid, IonRow, IonButton, IonCheckbox, RouterLink, ErrorAlertComponent, AlertComponent]
 })
 export class RegisterPage implements OnInit {
 
   error: boolean = false;
   errorMessage: string = "An error has occurred!";
+
+  alert: boolean = false;
+  alertMessage: string = "Alert message has occurred!";
 
   username: string = "";
   email: string = "";
@@ -54,8 +58,15 @@ export class RegisterPage implements OnInit {
 
     this.accountService.createAccount(data).subscribe({
       next: (response) => {
-        this.accountService.authAccount(response);
-        this.router.navigate(['/homepage']);
+        this.alert = true;
+        this.alertMessage = "Account has been created, redirecting...";
+
+        setTimeout(() => {
+          this.alert = false;
+          this.accountService.authAccount(response);
+          this.router.navigate(['/homepage']);
+        }, 3000);
+
       },
       error: (err) => {
         this.error = true;

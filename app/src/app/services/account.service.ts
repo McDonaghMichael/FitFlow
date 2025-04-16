@@ -28,8 +28,7 @@ export class AccountService {
 
   authAccount(response: any): void {
     localStorage.setItem('authenticated', 'true');
-    localStorage.setItem('account_id', response.account.id);
-    console.log(response);
+    localStorage.setItem('account_id', response.id);
   }
 
   deauthAccount(): void {
@@ -42,7 +41,6 @@ export class AccountService {
   }
 
   updateAccountData(data: any): Observable<any> {
-    console.log(data);
     return this.http.post<any>(`${this.apiUrl}/account/update`, data);
   }
 }

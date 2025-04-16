@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {
   IonButton,
   IonCard,
@@ -27,6 +27,8 @@ export class LogoutConfirmationComponent implements OnInit {
 
   @Input() onCancel!: () => void;
 
+  @Output() menuClosed = new EventEmitter<void>();
+
   constructor(private accountService: AccountService, private router: Router) { }
 
   ngOnInit() {}
@@ -34,7 +36,8 @@ export class LogoutConfirmationComponent implements OnInit {
   logOut () : void  {
     this.accountService.deauthAccount();
     this.router.navigate(['/authentication/landing']);
-
+    this.menuClosed.emit();
   }
+
 
 }

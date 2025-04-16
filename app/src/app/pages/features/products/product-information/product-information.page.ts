@@ -134,6 +134,8 @@ export class ProductInformationPage implements OnInit {
         for (let i = 0; i < this.rating; i++) {
           this.ratingArray.push(i);
         }
+
+        this.satisfaction = (this.rating / 5 ) * 100;
       },
       error: (err) => {
         console.error('Error fetching products:', err);
@@ -175,6 +177,29 @@ export class ProductInformationPage implements OnInit {
 
   getMicroTotalGrams(micro: number): number {
     return  Math.round((micro / this.grams) * 100);
+  }
+
+  getSatisfactionInfo(satisfaction: number): any {
+
+    const info = {
+      text: "Text",
+      colour: "#FFFFFF"
+    }
+    if(satisfaction >= 70 && this.satisfaction <= 100) {
+      info.text = "Positive";
+      info.colour = "#13fc03"
+    }else if(satisfaction >= 40 && this.satisfaction < 70) {
+      info.text = "Mediocre";
+      info.colour = "#fc7303"
+    }else if(satisfaction >= 1 && this.satisfaction < 40){
+      info.text = "Negative";
+      info.colour = "#fc2803"
+    }else {
+      info.text = "Unknown";
+      info.colour = "#464646"
+    }
+
+    return info;
   }
 
 }

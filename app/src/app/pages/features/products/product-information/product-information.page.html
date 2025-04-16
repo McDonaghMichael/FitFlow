@@ -31,13 +31,13 @@
             <ion-card-content>
               <ion-row class="ion-align-items-center">
                 <ion-col size="auto">
-                  <div class="progress-circle satisfaction">
-                    <div class="progress-value">{{satisfaction}}%</div>
+                  <div class="progress-circle " style="border: 4px solid {{getSatisfactionInfo(satisfaction).colour}};">
+                    <div class="progress-value" >{{satisfaction}}%</div>
                   </div>
                 </ion-col>
                 <ion-col>
                   <div class="label">Satisfaction</div>
-                  <div class="value">Positive</div>
+                  <div class="value">{{getSatisfactionInfo(satisfaction).text}}</div>
                 </ion-col>
               </ion-row>
             </ion-card-content>

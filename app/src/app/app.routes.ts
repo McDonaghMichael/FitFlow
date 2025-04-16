@@ -4,7 +4,7 @@ import {AuthGuard} from "./guards/auth/auth.guard";
 export const routes: Routes = [
   {
     path: '',
-    loadComponent: () => import('./pages/main/homepage/homepage.page').then(m => m.HomepagePage)
+    loadComponent: () => import('./pages/authentication/landing/landing.page').then(m => m.LandingPage)
   },
   {
     path: 'homepage',
@@ -67,7 +67,7 @@ export const routes: Routes = [
   },
   {
     path: 'product/barcode-scanner',
-
+    canActivate: [AuthGuard],
     loadComponent: () => import('./pages/features/products/barcode-scanner/barcode-scanner.page').then(m => m.BarcodeScannerPage)
   },
   {

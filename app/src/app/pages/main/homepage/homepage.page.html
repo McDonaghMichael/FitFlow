@@ -21,7 +21,7 @@
             <ion-row class="ion-align-items-center">
               <ion-col size="auto">
                 <div class="progress-circle calories">
-                  <div class="progress-value">89%</div>
+                  <div class="progress-value">{{ caloriesAcheived }}%</div>
                 </div>
               </ion-col>
               <ion-col>
@@ -38,7 +38,10 @@
             <ion-row class="ion-align-items-center">
               <ion-col size="auto">
                 <div class="progress-circle protein">
-                  <div class="progress-value">89%</div>
+                  <div class="progress-value">
+                    {{ proteinAcheived }}%
+                  </div>
+
                 </div>
               </ion-col>
               <ion-col>
@@ -51,6 +54,6 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <app-add-menu *ngIf="addMenu"></app-add-menu>
+  <app-add-menu *ngIf="addMenu" (menuClosed)="closeAddMenu()"></app-add-menu>
   <tab-menu [homepage]="true" (addMenu)="toggleAddMenu()"></tab-menu>
 </ion-content>

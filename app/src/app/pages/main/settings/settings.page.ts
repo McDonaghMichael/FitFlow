@@ -36,4 +36,8 @@ export class SettingsPage implements OnInit {
   ngOnInit() {
   }
 
+  closeAddMenu(): void {
+    this.logoutConfirmationShow = false;
+  }
+
 }

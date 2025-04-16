@@ -66,7 +66,7 @@ export class ReportIssuePage implements OnInit {
   }
 
   saveData() : void {
-    console.log(this.issue);
+
   }
 
 }

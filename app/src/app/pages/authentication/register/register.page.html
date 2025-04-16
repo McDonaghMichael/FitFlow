@@ -7,7 +7,16 @@
     <app-error-alert [message]="errorMessage"></app-error-alert>
   </div>
 
+  <div *ngIf="alert" >
+    <app-alert [message]="alertMessage"></app-alert>
+  </div>
+
   <ion-grid [fixed]="true">
+    <ion-row>
+      <ion-col>
+        <h1>Register Account</h1>
+      </ion-col>
+    </ion-row>
     <ion-row>
       <ion-col>
       <ion-list>

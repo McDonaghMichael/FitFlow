@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle} from "@ionic/angular/standalone";
 import {RouterLink} from "@angular/router";
 import {NgIcon, provideIcons} from "@ng-icons/core";
@@ -22,8 +22,13 @@ import {
 })
 export class AddMenuComponent  implements OnInit {
 
+  @Output() menuClosed = new EventEmitter<void>();
+
   constructor() { }
 
   ngOnInit() {}
 
+  closeMenu() {
+    this.menuClosed.emit();
+  }
 }

@@ -20,6 +20,7 @@ import {i} from "@angular/cdk/data-source.d-7cab2c9d";
 import {ProductService} from "../../../services/product.service";
 import {group} from "@angular/animations";
 import {StatsService} from "../../../utils/stats";
+import {AccountService} from "../../../services/account.service";
 
 @Component({
   selector: 'app-homepage',
@@ -37,8 +38,13 @@ export class HomepagePage implements OnInit, AfterViewInit {
     barcodeNumber: number;
   } = {} as any;
 
+  targetCalories: number = 2000;
+  targetProtein: number = 100;
   calories: number = 0;
   protein: number = 0;
+
+  proteinAcheived: number = 0;
+  caloriesAcheived: number = 0;
 
   weeklyCarbs: { [key: string]: number } = {
   };
@@ -50,30 +56,31 @@ export class HomepagePage implements OnInit, AfterViewInit {
   };
 
 
-  constructor(private loggingService: LoggingService, private productService: ProductService, private statsService: StatsService) { }
+  constructor(private loggingService: LoggingService, private productService: ProductService, private statsService: StatsService, private accountService: AccountService) { }
 
   ngOnInit() {
     this.weeklyCarbs = this.statsService.getStats().carbs;
     this.weeklyFibre = this.statsService.getStats().fibre;
     this.weeklyProtein = this.statsService.getStats().protein;
-    console.log("Weekly Data Updated:", this.weeklyCarbs);
 
-    setTimeout(() => {
-      this.initChart();
-    }, 500);
+    this.accountService.getAccountById(String(localStorage.getItem('account_id'))).subscribe({
+      next: async (response) => {
+        this.targetProtein = response.daily_protein_intake;
+        this.targetCalories = response.calorie_intake;
+        console.log(response);
+      },
+    });
+
   }
 
 
 
   ngAfterViewInit() {
 
-
-
     this.loggingService.getLogsByAccountId(String(localStorage.getItem('account_id'))).subscribe({
       next: (data: any) => {
         this.logs = data;
 
-        console.log("acc", localStorage.getItem('account_id'))
         // @ts-ignore
         for (let i = 0; i < this.logs.length; i++) {
           // @ts-ignore
@@ -81,6 +88,18 @@ export class HomepagePage implements OnInit, AfterViewInit {
             next: (data: any) => {
               this.calories += data.calories;
               this.protein += data.protein;
+              if (this.protein != null && this.targetProtein && this.targetProtein !== 0) {
+                this.proteinAcheived = Math.min(Math.round((this.protein / this.targetProtein) * 100), 100);
+              } else {
+                this.proteinAcheived = 0;
+              }
+
+              if (this.calories != null && this.targetCalories && this.targetCalories !== 0) {
+                this.caloriesAcheived = Math.min(Math.round((this.calories / this.targetCalories) * 100), 100);
+              } else {
+                this.caloriesAcheived = 0;
+              }
+
             },
             error: (err: any) => {
               console.error('Error fetching products:', err);
@@ -92,15 +111,14 @@ export class HomepagePage implements OnInit, AfterViewInit {
         console.error('Error fetching products:', err);
       }
     });
-
+    setTimeout(() => {
+      this.initChart();
+    }, 500);
 
   }
 
-
   initChart(): void {
     const ctx = document.getElementById('myChart') as HTMLCanvasElement;
-
-    console.log(this.weeklyCarbs)
 
     new Chart(ctx, {
       type: 'line',
@@ -162,5 +180,10 @@ export class HomepagePage implements OnInit, AfterViewInit {
   toggleAddMenu() : void {
     this.addMenu = !this.addMenu;
   }
+
+  closeAddMenu(): void {
+    this.addMenu = false;
+  }
+
 
 }

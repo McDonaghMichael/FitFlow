@@ -17,7 +17,7 @@ export class AppComponent {
   error: boolean = false;
   errorMessage: string = "An error has occurred!";
 
-  isDarkMode = true;
+  isDarkMode = false;
 
   constructor(private accountService: AccountService) {}
 
@@ -26,8 +26,10 @@ export class AppComponent {
       next: async (response) => {
         this.isDarkMode = response.dark_mode;
 
-        console.log("test", response.dark_mode)
-        this.applyTheme()
+        if(this.isDarkMode) {
+          this.applyTheme()
+        }
+
       },
       error: (err) => {
         this.error = true;
