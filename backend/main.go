@@ -49,17 +49,16 @@ func main() {
 	r.HandleFunc("/review/rating/{barcode}", routes.FetchRating(client)).Methods("GET")
 
 	corsHandler := cors.New(cors.Options{
-		AllowedOrigins:   []string{"https://localhost:4200", "http://192.168.1.53", "https://192.168.56.1:4200", "https://192.168.1.31:4200"},
+		AllowedOrigins:   []string{"https://localhost:4200", "http://192.168.1.31:8080", "http://192.168.1.53", "http://192.168.56.1:4200", "http://192.168.1.31:4200"},
 		AllowedMethods:   []string{"GET", "POST"},
 		AllowedHeaders:   []string{"Content-Type"},
 		AllowCredentials: true,
 	}).Handler(r)
 
-	err = http.ListenAndServeTLS(":8080", "cert.pem", "key.pem", corsHandler)
+	err = http.ListenAndServe(":8181", corsHandler)
 	if err != nil {
-		log.Fatal("[FAILURE] HTTPS Server Error:", err)
+		log.Fatal("[FAILURE] HTTP Server Error:", err)
 	}
-	
 }
 
 func handleHome(w http.ResponseWriter, r *http.Request) {

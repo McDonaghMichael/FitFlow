@@ -27,6 +27,7 @@ func FetchProducts(client *mongo.Client) http.HandlerFunc {
 			panic(err)
 		}
 
+		w.Header().Set("Content-Type", "application/json")
 		json.NewEncoder(w).Encode(results)
 	}
 }
@@ -51,6 +52,8 @@ func FindProductByBarcode(client *mongo.Client) http.HandlerFunc {
 			log.Print(err)
 		}
 
+		w.Header().Set("Content-Type", "application/json")
 		json.NewEncoder(w).Encode(result)
+
 	}
 }

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LoggingService {
-  private apiUrl = 'https://192.168.1.31:8080';
+  private apiUrl = 'https://9696-51-37-120-123.ngrok-free.app';
 
   constructor(private http: HttpClient) {}
 
