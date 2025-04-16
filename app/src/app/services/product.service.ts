@@ -6,41 +6,33 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductService {
-  private apiUrl = 'https://9696-51-37-120-123.ngrok-free.app';
+  private apiUrl = 'http://185.81.166.93:8181';
 
   constructor(private http: HttpClient) {}
 
-  private getHeaders() {
-    return new HttpHeaders({
-      'ngrok-skip-browser-warning': 'true',
-      'User-Agent': 'CustomAgent/1.0',
-    });
-  }
-
   getProducts(): Observable<any[]> {
-    const headers = new HttpHeaders().set('ngrok-skip-browser-warning', 'true');
-    const req = this.http.get<any[]>(`${this.apiUrl}/products`, { headers });
+    const req = this.http.get<any[]>(`${this.apiUrl}/products`);
     console.log(req);
     return req;
   }
 
   getProductById(barcodeNumber: string): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/product/${barcodeNumber}`, { headers: this.getHeaders() });
+    return this.http.get<any>(`${this.apiUrl}/product/${barcodeNumber}`);
   }
 
   addProductReview(review: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/review/create`, review, { headers: this.getHeaders() });
+    return this.http.post<any>(`${this.apiUrl}/review/create`, review);
   }
 
   getReviews(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/reviews`, { headers: this.getHeaders() });
+    return this.http.get<any[]>(`${this.apiUrl}/reviews`);
   }
 
   getRating(barcodeNumber: string): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/review/rating/${barcodeNumber}`, { headers: this.getHeaders() });
+    return this.http.get<any[]>(`${this.apiUrl}/review/rating/${barcodeNumber}`);
   }
 
   getReviewsByBarcode(barcodeNumber: string): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/reviews/${barcodeNumber}`, { headers: this.getHeaders() });
+    return this.http.get<any[]>(`${this.apiUrl}/reviews/${barcodeNumber}`);
   }
 }
