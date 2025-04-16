@@ -180,14 +180,7 @@ func EditAccount(client *mongo.Client) http.HandlerFunc {
 			return
 		}
 
-		objectID, err := bson.ObjectIDFromHex(account.ID)
-		if err != nil {
-			http.Error(w, "Invalid ID format", http.StatusBadRequest)
-			log.Println("Invalid ObjectID:", err)
-			return
-		}
-
-		filter := bson.M{"_id": objectID}
+		filter := bson.M{"_id": account.ID}
 
 		updateFields := bson.M{
 			"updated_date": account.UpdatedDate,
