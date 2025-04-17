@@ -1,6 +1,8 @@
 <ion-content [fullscreen]="true">
   <app-product-header [name]="name" [brand]="brand" [ratingArray]="ratingArray"></app-product-header>
   <app-add-product-review [showMenu]="showAddReview" (addReview)="addReview($event)"></app-add-product-review>
-  <app-product-review *ngFor="let index of reviews" [accountId]="index.reviewer" [review]="index.message" [rating]="index.rating"></app-product-review>
+  <div class="review-container">
+    <app-product-review *ngFor="let index of reviews" [accountId]="index.reviewer" [review]="index.message" [rating]="index.rating"></app-product-review>
+  </div>
   <tab-menu [reviewPage]="true" (save)="toggleAddReviewMenu()"></tab-menu>
 </ion-content>
