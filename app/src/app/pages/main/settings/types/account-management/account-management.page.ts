@@ -2,51 +2,56 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
-  IonButton,
-  IonCheckbox,
   IonCol,
   IonContent,
   IonGrid,
-  IonHeader, IonInput, IonItem, IonList, IonRow,
-  IonTitle,
-  IonToolbar
+  IonInput,
+  IonItem,
+  IonList,
+  IonRow
 } from '@ionic/angular/standalone';
-import {RouterLink} from "@angular/router";
-import {SettingsTabMenuComponent} from "../../../../../components/settings-tab-menu/settings-tab-menu.component";
-import {LogoutConfirmationComponent} from "../../../../../components/logout-confirmation/logout-confirmation.component";
-import {NotificationComponent} from "../../../../../components/notification/notification.component";
-import {ErrorAlertComponent} from "../../../../../components/error-alert/error-alert.component";
-import {AccountService} from "../../../../../services/account.service";
+
+// Custom components
+import { SettingsTabMenuComponent } from "../../../../../components/settings-tab-menu/settings-tab-menu.component";
+import { NotificationComponent } from "../../../../../components/notification/notification.component";
+import { ErrorAlertComponent } from "../../../../../components/error-alert/error-alert.component";
+
+// Account service to fetch and update user info
+import { AccountService } from "../../../../../services/account.service";
 
 @Component({
   selector: 'app-account-management',
   templateUrl: './account-management.page.html',
   styleUrls: ['./account-management.page.scss'],
   standalone: true,
-  imports: [IonContent, CommonModule, FormsModule, IonCol, IonGrid, IonInput, IonItem, IonList, IonRow, SettingsTabMenuComponent, NotificationComponent, ErrorAlertComponent]
+  imports: [
+    IonContent, CommonModule, FormsModule, IonCol, IonGrid, IonInput,
+    IonItem, IonList, IonRow,
+    SettingsTabMenuComponent, NotificationComponent, ErrorAlertComponent
+  ]
 })
 export class AccountManagementPage implements OnInit {
 
+  // Flags for UI feedback
   settingsSaved: boolean = false;
   error: boolean = false;
   errorMessage: string = "An error has occurred!";
 
+  // Account fields
   username: string = "";
   email: string = "";
   password: string = "";
   newPassword: string = "";
   confirmNewPassword: string = "";
 
-  constructor(private accountService: AccountService) {
-  }
+  constructor(private accountService: AccountService) { }
 
   ngOnInit() {
-
+    // Fetch account data on init
     this.accountService.getAccountById(String(localStorage.getItem('account_id'))).subscribe({
       next: async (response) => {
         this.username = response.username;
         this.email = response.email;
-
       },
       error: (err) => {
         this.error = true;
@@ -57,8 +62,10 @@ export class AccountManagementPage implements OnInit {
     });
   }
 
-  saveSettings() : void {
-    if(!this.runValidation()) return;
+  // Save updated settings to backend
+  saveSettings(): void {
+    // Run validation before saving
+    if (!this.runValidation()) return;
 
     this.accountService.updateAccountData({
       ID: localStorage.getItem('account_id'),
@@ -76,7 +83,6 @@ export class AccountManagementPage implements OnInit {
       error: (err) => {
         this.error = true;
         this.errorMessage = err.error.text;
-
         setTimeout(() => {
           this.error = false;
         }, 3000);
@@ -84,7 +90,8 @@ export class AccountManagementPage implements OnInit {
     });
   }
 
-  runValidation() : boolean {
+  // Validate input fields before saving
+  runValidation(): boolean {
     this.error = false;
     this.errorMessage = "An error has occurred";
 
@@ -92,12 +99,15 @@ export class AccountManagementPage implements OnInit {
       this.error = false;
     }, 3000);
 
-    if(!this.password && this.newPassword && this.confirmNewPassword) {
+    // Require old password when updating password
+    if (!this.password && this.newPassword && this.confirmNewPassword) {
       this.error = true;
       this.errorMessage = "Please enter old password to confirm update";
       return false;
     }
-    if(this.newPassword !== this.confirmNewPassword) {
+
+    // Ensure new password and confirmation match
+    if (this.newPassword !== this.confirmNewPassword) {
       this.error = true;
       this.errorMessage = "Passwords do not match";
       return false;

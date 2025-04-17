@@ -2,43 +2,50 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
-  IonButton,
   IonCard,
   IonCardContent,
   IonCol,
   IonContent,
   IonGrid,
-  IonHeader, IonInput, IonItem, IonLabel, IonRow, IonTextarea,
-  IonTitle, IonToggle,
-  IonToolbar
+  IonItem,
+  IonRow,
+  IonTextarea
 } from '@ionic/angular/standalone';
-import {SettingsTabMenuComponent} from "../../../../../components/settings-tab-menu/settings-tab-menu.component";
-import {NotificationComponent} from "../../../../../components/notification/notification.component";
-import {ErrorAlertComponent} from "../../../../../components/error-alert/error-alert.component";
-import {AccountService} from "../../../../../services/account.service";
+import { SettingsTabMenuComponent } from "../../../../../components/settings-tab-menu/settings-tab-menu.component";
+import { NotificationComponent } from "../../../../../components/notification/notification.component";
+import { ErrorAlertComponent } from "../../../../../components/error-alert/error-alert.component";
+import { AccountService } from "../../../../../services/account.service";
 
 @Component({
   selector: 'app-report-issue',
   templateUrl: './report-issue.page.html',
   styleUrls: ['./report-issue.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCard, IonCardContent, IonCol, IonGrid, IonItem, IonLabel, IonRow, IonToggle, IonButton, IonInput, IonTextarea, SettingsTabMenuComponent, NotificationComponent, ErrorAlertComponent]
+  imports: [
+    IonContent, CommonModule, FormsModule,
+    IonCard, IonCardContent, IonCol, IonGrid, IonItem, IonRow, IonTextarea,
+    SettingsTabMenuComponent, NotificationComponent, ErrorAlertComponent
+  ]
 })
 export class ReportIssuePage implements OnInit {
 
+  // Flag for success message
   issueReported: boolean = false;
+
+  // Issue entered by the user
   issue: string = "";
 
+  // Error handling
   error: boolean = false;
   errorMessage: string = "An error has occurred!";
 
-  constructor(private accountService: AccountService) { }
+  constructor(private accountService: AccountService) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
+  // Called when user submits the report
   submitReport() {
-    if(!this.runValidation()) return;
+    if (!this.runValidation()) return;
 
     this.issueReported = true;
     setTimeout(() => {
@@ -48,7 +55,8 @@ export class ReportIssuePage implements OnInit {
     this.saveData();
   }
 
-  runValidation() : boolean {
+  // Validates that issue content is not empty
+  runValidation(): boolean {
     this.error = false;
     this.errorMessage = "An error has occurred";
 
@@ -56,7 +64,7 @@ export class ReportIssuePage implements OnInit {
       this.error = false;
     }, 3000);
 
-    if(this.issue.length <= 0) {
+    if (this.issue.length <= 0) {
       this.error = true;
       this.errorMessage = "Issue cannot be empty";
       return false;
@@ -65,7 +73,8 @@ export class ReportIssuePage implements OnInit {
     return true;
   }
 
-  saveData() : void {
+  // Sends the issue report to the server
+  saveData(): void {
 
   }
 

@@ -5,11 +5,8 @@ import {
     IonButton,
     IonCol,
     IonContent,
-    IonGrid,
-    IonHeader, IonInput, IonItem, IonList,
-    IonRow, IonText,
-    IonTitle,
-    IonToolbar
+    IonGrid, IonInput, IonItem, IonList,
+    IonRow
 } from '@ionic/angular/standalone';
 import {ErrorAlertComponent} from "../../../components/error-alert/error-alert.component";
 import {RouterLink} from "@angular/router";
@@ -20,7 +17,7 @@ import {AlertComponent} from "../../../components/alert/alert.component";
   templateUrl: './forgot-password.page.html',
   styleUrls: ['./forgot-password.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCol, IonGrid, IonRow, ErrorAlertComponent, IonButton, IonInput, IonItem, IonList, IonText, RouterLink, AlertComponent]
+  imports: [IonContent, CommonModule, FormsModule, IonCol, IonGrid, IonRow, ErrorAlertComponent, IonButton, IonInput, IonItem, IonList, RouterLink, AlertComponent]
 })
 export class ForgotPasswordPage implements OnInit {
 

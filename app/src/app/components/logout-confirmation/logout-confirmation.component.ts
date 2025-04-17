@@ -4,7 +4,6 @@ import {
   IonCard,
   IonCardContent,
   IonCardHeader,
-  IonCardSubtitle,
   IonCardTitle
 } from "@ionic/angular/standalone";
 import {AccountService} from "../../services/account.service";
@@ -18,7 +17,6 @@ import {Router} from "@angular/router";
     IonCard,
     IonCardHeader,
     IonCardTitle,
-    IonCardSubtitle,
     IonCardContent,
     IonButton
   ]

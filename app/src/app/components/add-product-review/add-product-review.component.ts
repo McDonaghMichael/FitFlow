@@ -3,18 +3,13 @@ import {
   IonButton,
   IonCard,
   IonCardContent,
-  IonInput,
-  IonItem,
-  IonLabel,
   IonSelect, IonSelectOption,
   IonTextarea
 } from "@ionic/angular/standalone";
 import {NgIcon, provideIcons} from "@ng-icons/core";
-import {RouterLink} from "@angular/router";
-import {featherAlignJustify, featherType, featherX} from "@ng-icons/feather-icons";
+import {featherX} from "@ng-icons/feather-icons";
 import {FormsModule} from "@angular/forms";
 import {NgIf} from "@angular/common";
-import {AccountService} from "../../services/account.service";
 
 @Component({
   selector: 'app-add-product-review',

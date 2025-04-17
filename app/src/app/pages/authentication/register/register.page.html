@@ -37,7 +37,8 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-checkbox [(ngModel)]="termsAndConditions" [value]="termsAndConditions" labelPlacement="end">Agree to Terms and Conditions</ion-checkbox>
+        <ion-checkbox [(ngModel)]="termsAndConditions" [value]="termsAndConditions" labelPlacement="start" style="margin-right: 5px;"></ion-checkbox>
+        <ion-text [routerLink]="['/authentication/terms']">Agree to Terms and Conditions</ion-text>
       </ion-col>
     </ion-row>
     <ion-row>

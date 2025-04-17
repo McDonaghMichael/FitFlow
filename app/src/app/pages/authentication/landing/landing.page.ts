@@ -6,10 +6,8 @@ import {
   IonCol,
   IonContent,
   IonGrid,
-  IonHeader, IonImg,
-  IonRow,
-  IonTitle,
-  IonToolbar
+  IonImg,
+  IonRow
 } from '@ionic/angular/standalone';
 import {RouterLink} from "@angular/router";
 
@@ -18,7 +16,7 @@ import {RouterLink} from "@angular/router";
   templateUrl: './landing.page.html',
   styleUrls: ['./landing.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonGrid, IonRow, IonCol, IonImg, RouterLink]
+  imports: [IonContent, CommonModule, FormsModule, IonButton, IonGrid, IonRow, IonCol, IonImg, RouterLink]
 })
 export class LandingPage implements OnInit {
 

@@ -3,13 +3,11 @@ import {
   IonIcon,
   IonTabBar,
   IonTabButton,
-  IonTabs,
-  IonTab, IonToolbar, IonFooter
+  IonTabs, IonToolbar, IonFooter
 } from "@ionic/angular/standalone";
 import {MatIcon} from "@angular/material/icon";
 import {RouterLink} from "@angular/router";
 import {NgIf} from "@angular/common";
-import { heroUsers } from '@ng-icons/heroicons/outline';
 import {NgIcon, provideIcons} from "@ng-icons/core";
 import { featherHome, featherArrowLeft, featherUser, featherSettings, featherPlusCircle, featherType, featherAlignJustify} from '@ng-icons/feather-icons';
 
@@ -22,8 +20,6 @@ import { featherHome, featherArrowLeft, featherUser, featherSettings, featherPlu
     IonTabs,
     IonTabBar,
     IonTabButton,
-    IonIcon,
-    MatIcon,
     IonToolbar,
     RouterLink,
     NgIf,
