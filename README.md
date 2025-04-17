@@ -1,9 +1,3 @@
-**Student No:** G00421944
-
-**Email:** G00421944@atu.ie
-
-**GitHub:** https://github.com/McDonaghMichael/FitFlow
-
 **LIVE Preview:** https://fitflow.mcdonagh.xyz
 
 ## Project Background
