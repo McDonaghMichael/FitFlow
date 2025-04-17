@@ -113,5 +113,4 @@ export class FitnessDataPage implements OnInit {
     });
   }
 
-  protected readonly String = String;
 }

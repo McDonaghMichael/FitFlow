@@ -103,8 +103,8 @@ export class GoalsPage implements OnInit {
       },
       error: (err) => {
         this.error = true;
-        this.errorMessage = err.error.text;
-
+        this.errorMessage = err.error;
+        console.log(err)
         setTimeout(() => {
           this.error = false;
         }, 3000);
