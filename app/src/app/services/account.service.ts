@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AccountService {
-  private apiUrl = 'http://185.81.166.93:8181';
+  private apiUrl = 'https://fitflowapi.mcdonagh.xyz';
 
   constructor(private http: HttpClient) {}
 
