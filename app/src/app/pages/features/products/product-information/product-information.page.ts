@@ -55,6 +55,7 @@ export class ProductInformationPage implements OnInit {
     protein: number;
     fibre: number;
     grams: number;
+    carbs: number;
     barcodeNumber: number;
   } = {} as any;
 
@@ -118,6 +119,7 @@ export class ProductInformationPage implements OnInit {
           this.protein = this.selectedFood.protein;
           this.calories = this.selectedFood.calories;
           this.grams = this.selectedFood.grams;
+          this.carbs = this.selectedFood.carbs;
           this.initChart();  // Initialize the chart with product data
         }
       },
