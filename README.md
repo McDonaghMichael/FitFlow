@@ -1,5 +1,3 @@
-**LIVE Preview:** https://fitflow.mcdonagh.xyz
-
 ## Project Background
 
 **FitFlow** is a mobile application developed by myself that allows for people to track their calories, carbs from food and drinks, as well as leave reviews on different items to allow others to know what is being said in regard to the item. There are many other different features including *goal tracking*, *change appearance of the app from light to dark mode which is synced across platforms along as you log in via the same accoun*t and *ability to edit your own profile.*
